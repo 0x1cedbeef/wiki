@@ -26,3 +26,31 @@ Port: 8080
 
 のように記入する
 
+## githubのrepoにpushできない
+
+以下の手順を行う  
+なお、ssh用の鍵を**github**として作成済み、*Wiki.js* に設定済み、かつ*Github*にpublic keyを登録済みだと仮定する
+
+1. `/home/username/.ssh/config`の設定  
+```
+Host github.com
+HostName github.com
+User git
+IdentityFile /home/username/.ssh/github
+```
+
+2. `git remote -v`で設定を確認  
+```bash
+$ cd wiki/repo
+$ git remote -v
+origin	https://github.com/0x1cedbeef/wiki (fetch)
+origin	https://github.com/0x1cedbeef/wiki (push)
+```  
+こうなっていたら、
+```bash
+$ git remote set-url origin git@github.com:{github_username}/{reponame}.git
+$ git remote -v
+origin	git@github.com:0x1cedbeef/wiki.git (fetch)
+origin	git@github.com:0x1cedbeef/wiki.git (push)
+```
+
