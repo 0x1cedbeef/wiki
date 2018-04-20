@@ -26,6 +26,8 @@ e = pubkey.e
 
 $φ(n) = φ(p) = p - 1 = n - 1$
 
+$n - 1$
+
 Pythonでは
 
 ```python
