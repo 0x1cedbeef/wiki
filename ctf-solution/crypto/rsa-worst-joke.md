@@ -54,7 +54,7 @@ c = int.from_bytes(b64decodedCipher, 'big')
 
 RSAで $d$ は以下のように与えられる
 
-$e*d ≡ 1 (\mod \phi(n))$
+$ed \equiv 1 \mod \phi(n)$
 
 先程すでに**e**と**n**を求めているので、**d**はモジュール*gmpy*を用いて以下のようにして求められる
 
