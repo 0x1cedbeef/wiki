@@ -43,14 +43,14 @@ IdentityFile /home/username/.ssh/github
 ```bash
 $ cd wiki/repo
 $ git remote -v
-origin	https://github.com/0x1cedbeef/wiki (fetch)
-origin	https://github.com/0x1cedbeef/wiki (push)
+origin	https://github.com/{github_username}/{reponame} (fetch)
+origin	https://github.com/{github_username}/{reponame} (push)
 ```  
 こうなっていたら、
 ```bash
 $ git remote set-url origin git@github.com:{github_username}/{reponame}.git
 $ git remote -v
-origin	git@github.com:0x1cedbeef/wiki.git (fetch)
-origin	git@github.com:0x1cedbeef/wiki.git (push)
+origin	git@github.com:{github_username}/{reponame}.git (fetch)
+origin	git@github.com:{github_username}/{reponame}.git (push)
 ```
 
