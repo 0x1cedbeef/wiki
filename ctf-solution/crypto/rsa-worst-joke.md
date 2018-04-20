@@ -56,7 +56,7 @@ RSAで $d$ は以下のように与えられる
 
 $ed \equiv 1 \mod \phi(n)$
 
-先程すでに**e**と**n**を求めているので、**d**はモジュール*gmpy*を用いて以下のようにして求められる
+先程すでに $e$ と $n$ を求めているので、d$ はモジュール*gmpy*を用いて以下のようにして求められる
 
 ```python 
 import gmpy
@@ -71,7 +71,7 @@ $ sudo apt update && sudo apt install python3-dev limgmp3-dev
 $ sudo -H pip3 install gmpy
 ```
 
-<a href=https://code.google.com/p/gmpy/source/browse/trunk/doc/gmpydoc.txt>gmpyのdocumentation</a>
+[gmpyのdocumentation](https://code.google.com/p/gmpy/source/browse/trunk/doc/gmpydoc.txt)
 
 
 # 復号、そして暗号化
