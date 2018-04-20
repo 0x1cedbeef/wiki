@@ -25,7 +25,7 @@ b'Hello, World!'
 *int.from_bytes*の第2引数の*'big'*は, *big endian*を意味していて, バイト列をそのまま順番に先頭から処理して先頭から格納することを示している. 
 （あえて言うなら, *little endian*として処理しないということでもある. 補足として*big endian*で処理したときと, *little endian*で処理したときの違いを示す）
 
-```python3
+```python
 >>> hex(int.from_bytes('ABCDEFGH'.encode(), 'big'))
 '0x4142434445464748'
 >>> hex(int.from_bytes('ABCDEFGH'.encode(), 'little'))
