@@ -23,11 +23,7 @@ b'Hello, World!'
 
 文字列 $s$ に対し, まず[str.encode()](https://docs.python.org/3/library/stdtypes.html#str.encode)でbytes型に変換して、その結果を数値（int型）に[int.from_bytes()](https://docs.python.org/3/library/stdtypes.html#int.from_bytes)を用いて変換している.
 *int.from_bytes*の第2引数の*'big'*は, *big endian*を意味していて, バイト列をそのまま順番に先頭から処理して先頭から格納することを示している. 
-（あえて言うなら, *little endian*として処理しないということでもある. 補足として*big endian*で処理したときと, *little endian*で処理したときの違いを示す[^100]）
-
-
-
-[^100]:
+（あえて言うなら, *little endian*として処理しないということでもある. 補足として*big endian*で処理したときと, *little endian*で処理したときの違いを示す）
 ```python
 >>> hex(int.from_bytes('ABCDEFGH'.encode(), 'big'))
 '0x4142434445464748'
