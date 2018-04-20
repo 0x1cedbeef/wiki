@@ -26,7 +26,7 @@ e = pubkey.e
 
 $φ(n) = φ(p) = p - 1 = n - 1$
 
-\(\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}\)
+$\frac{\pi^2}{6}$
 
 Pythonでは
 
