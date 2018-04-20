@@ -11,7 +11,7 @@ ciphertext = open('flag.enc', 'r')
 ```
 
 `pem`をRSA公開鍵として読み込む  
-modulus **n** と、public exponent **e** も同時に代入する
+modulus $n$ と、public exponent $e$ も同時に代入する
 
 ```python
 from Crypto.PublicKey import RSA
@@ -21,8 +21,8 @@ e = pubkey.e
 ```
 
 
-φ(n)は本来2つの素数 **p**. **q** より `(p-1) * (q-1)`で計算されるが、今回は **n** を構成するのに、ただ1つの素数 **p** しか用いていない  
-したがって、` n == p `より
+φ(n)は本来2つの素数 $p$. $q$ より `(p-1) * (q-1)`で計算されるが、今回は $n$ を構成するのに、ただ1つの素数 $p$ しか用いていない  
+したがって、 $n \eq p$ より
 ```
 φ(n) = φ(p)
      = p - 1
