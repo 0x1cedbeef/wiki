@@ -13,7 +13,7 @@ Rivest, Shamir, Adlemanの三人の発明者の頭文字を取って名付けら
 
 以下にPython3による英文の数値変換例を示す.
 
-```python3
+```python
 >>> s = 'Hello, World!'
 >>> s.encode()
 b'Hello, World!'
