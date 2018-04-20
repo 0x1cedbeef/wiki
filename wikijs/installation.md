@@ -29,28 +29,29 @@ Port: 8080
 ## githubのrepoにpushできない
 
 以下の手順を行う  
-なお、ssh用の鍵を**github**として作成済み、*Wiki.js* に設定済み、かつ*Github*にpublic keyを登録済みだと仮定する
+なお、ssh用の鍵を作成済み、*Wiki.js* に設定済み、かつ*Github*にpublic keyを登録済みだと仮定する
 
 1. `/home/username/.ssh/config`の設定  
 ```
 Host github.com
 HostName github.com
 User git
-IdentityFile /home/username/.ssh/github
+IdentityFile /home/{username}/.ssh/{privatekeyname}
 ```
 
 2. `git remote -v`で設定を確認  
 ```bash
-$ cd wiki/repo
+$ cd /path/to/wiki/
+$ cd repo
 $ git remote -v
 origin	https://github.com/{github_username}/{reponame} (fetch)
 origin	https://github.com/{github_username}/{reponame} (push)
 ```  
-こうなっていたら、
+このようにpushに*https*を使うようになっていたら、
 ```bash
 $ git remote set-url origin git@github.com:{github_username}/{reponame}.git
 $ git remote -v
 origin	git@github.com:{github_username}/{reponame}.git (fetch)
 origin	git@github.com:{github_username}/{reponame}.git (push)
-```
-
+```  
+このようにして*ssh*を使うように変更する
