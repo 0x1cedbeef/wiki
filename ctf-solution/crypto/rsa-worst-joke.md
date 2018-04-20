@@ -42,7 +42,7 @@ b64decodedCipher = b64decode(ciphertext)
 ```
 
 この*b64decodedCipher*は*byte*型となる  
-*byte*型を*int*型にするには、***int.from_bytes***メソッドを使う
+*byte*型を*int*型にするには、[int.from_bytes](https://docs.python.org/3/library/stdtypes.html#int.from_bytes) メソッドを使う
 
 ```python
 c = int.from_bytes(b64decodedCipher, 'big')
@@ -52,12 +52,9 @@ c = int.from_bytes(b64decodedCipher, 'big')
 
 # d (private exponent)を求める
 
-RSAで*d*は以下のように与えられる
+RSAで $d$ は以下のように与えられる
 
-
-```
-e*d ≡ 1 (mod φ(n))
-```
+$e*d ≡ 1 (\mod \phi(n))$
 
 先程すでに**e**と**n**を求めているので、**d**はモジュール*gmpy*を用いて以下のようにして求められる
 
