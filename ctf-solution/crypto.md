@@ -5,4 +5,4 @@
 
 [AlexCTF: CR4: Poor RSA](/ctf-solution/crypto/poor-rsa)
 
-[rsa-worst-joke](/ctf-solution/crypto/rsa-worst-joke)
+[Securinets CTF Quals 2018: The worst RSA Joke](/ctf-solution/crypto/rsa-worst-joke)
