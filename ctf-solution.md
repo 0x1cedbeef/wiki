@@ -4,7 +4,7 @@
 # 解いたCTFの解法集
 
 TODO
-サブジャンル分けなども必要か…
+サブジャンル分けなども必要か…（特にmisc）
 
 ## Crypto
 
@@ -21,3 +21,7 @@ TODO
 ## Rev (Bin)
 
 [rev](/ctf-solution/rev)
+
+## Misc
+
+[misc](/ctf-solution/misc)
