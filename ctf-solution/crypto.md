@@ -3,6 +3,6 @@
 
 # Header
 
-[poor-rsa](/ctf-solution/crypto/poor-rsa)
+[AlexCTF: CR4: Poor RSA](/ctf-solution/crypto/poor-rsa)
 
 [rsa-worst-joke](/ctf-solution/crypto/rsa-worst-joke)
