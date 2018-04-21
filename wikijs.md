@@ -5,4 +5,4 @@
 
 # ページ一覧
 
-[Wiki.jsインストール](/installation)
+[Wiki.jsインストール](/wikijs/installation)
