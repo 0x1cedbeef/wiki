@@ -6,6 +6,18 @@
 TODO
 サブジャンル分けなども必要か…
 
+## Crypto
+
 [crypto](/ctf-solution/crypto)
 
+## pwn
+
 [pwn](/ctf-solution/crypto)
+
+## Forensics
+
+[forensics](/ctf-solution/forensics)
+
+## Rev (Bin)
+
+[rev](/ctf-solution/rev)
