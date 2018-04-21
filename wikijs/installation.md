@@ -55,3 +55,21 @@ origin	git@github.com:{github_username}/{reponame}.git (fetch)
 origin	git@github.com:{github_username}/{reponame}.git (push)
 ```  
 このようにして*ssh*を使うように変更する
+
+## `git push`の方法が勝手に切り替わる
+
+- 正しい状態（*ssh*を使うよう設定されている）
+
+```bash
+$ git --git-dir=/path/to/wiki/repo/.git remote -v
+origin	git@github.com:{username}/{reponame}.git (fetch)
+origin	git@github.com:{username}/{reponame}.git (push)
+```
+
+- 異常時（*https*を使うように設定が変わっている）
+
+```bash
+$ git --git-dir=/path/to/wiki/repo/.git remote -v
+origin	https://github.com/{username}/{reponame} (fetch)
+origin	https://github.com/{username}/{reponame} (push)
+```
