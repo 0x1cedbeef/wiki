@@ -54,7 +54,7 @@ idは **DUNGEON_MASTER** だとわかっているから、あとはpasswordだ�
 '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>Error</title>\n</head>\n<body>\n<pre>test_hash [0d6be69b264717f2dd33652e212b173104b4a647b7c11ae72e9885f11cd312fb] does not match real_hash[40f5d109272941b79fdf078a0e41477227a9b4047ca068fff6566104302169ce]</pre>\n</body>\n</html>\n'
 ```
 
-64文字のhash値なのでおそらくSHA256と予想
+64byteのhash値なのでおそらくSHA256と予想（ $64 \times 8 = 256$ )
 hash値が違うよと言われているが、ご丁寧に正しいhash値を教えてくれている
 
 もうすでに前半部分はわかっているので、あとはデコーダーに入れて解く
