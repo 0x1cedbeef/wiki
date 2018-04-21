@@ -74,7 +74,7 @@ Status :FF => Composite, fully factored
 
 ところで、RSAにおける *private exponent* $d$ は
 
-$$e*d \equiv 1 \mod \phi(n)$$
+$$ed \equiv 1 \mod \phi(n)$$
 
 から以下のように導ける
 
