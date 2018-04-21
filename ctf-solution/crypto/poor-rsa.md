@@ -2,8 +2,7 @@
 <!-- SUBTITLE: A quick summary of Poor Rsa -->
 
 # 問題
-
-TODO
+[ctftime](https://ctftime.org/task/3350)
 
 # 解法
 
