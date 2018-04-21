@@ -6,3 +6,5 @@
 **0x1cedbeef**のWIKIです
 
 [Wiki.js](https://wiki.js.org/)を使用しています
+
+/play secret
