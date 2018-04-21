@@ -3,6 +3,12 @@
 
 # The Vault - writeup
 
+## 問題
+
+[ctftime](https://ctftime.org/task/5676)
+
+## 解法
+
 ```
 （長々とした前置き）
 But the door. It won't budge. It says it will answer only to the DUNGEON_MASTER.
@@ -55,7 +61,41 @@ idは **DUNGEON_MASTER** だとわかっているから、あとはpasswordだ�
 ```
 
 64文字 &rarr; 32byte &rarr; 256bitのhash値なのでおそらくSHA256と予想
-hash値が違うよと言われているが、ご丁寧に正しいhash値を教えてくれている
+hash値が違うよと言われているが、ご丁寧に正しいhash値 **40f5d109272941b79fdf078a0e41477227a9b4047ca068fff6566104302169ce** を教えてくれている
 
 もうすでに前半部分はわかっているので、あとはデコーダーに入れて解く
 
+[Hash Decoder](https://www.dcode.fr/hash-function)
+
+```
+HASH / FINGERPRINT
+40f5d109272941b79fdf078a0e41477227a9b4047ca068fff6566104302169ce
+
+ALGORITHM 
+SHA256 (64 hex characters)
+
+SALT PREFIXED HASH(SALT+WORD) 
+DUNGEON_MASTER.
+```
+
+```
+Results
+
+SHA256
+smaug123
+```
+
+したがってクレデンシャルは
+```
+ID: DUNGEON_MASTER
+PW: smaug123
+```
+
+これを入力してログインすると、ブラウザのダイアログに以下の文章が表示される
+
+```
+From chal1.swampctf.com:2694
+flag{somewhere_over_the_rainbow_tables}
+```
+
+どうやら正規の解法ではRTを使ってほしかった模様
