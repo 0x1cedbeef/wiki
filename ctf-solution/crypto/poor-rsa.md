@@ -34,12 +34,12 @@ $n$ が小さいことに気づく
 ```
 
 一般的に、**768bit** 以下の *modulus* は素因数分解が計算的に可能である  
-参考: <a href=https://eprint.iacr.org/2010/006>Cryptology ePrint Archive: Report 2010/006</a>
+参考: [Cryptology ePrint Archive: Report 2010/006](https://eprint.iacr.org/2010/006)
 
 これ以下の桁数であれば、誰かがすでに素因数分解済みである可能性がある  
 よって、 factordb.com から探してみる
 
-今回は、<a href=https://github.com/ihebski/factordb>**factordb.py**</a> を用いた
+今回は、[factordb.py](https://github.com/ihebski/factordb)を用いた
 
 ```sh
 % factordb 833810193564967701912362955539789451139872863794534923259743419423089229206473091408403560311191545764221310666338878019
