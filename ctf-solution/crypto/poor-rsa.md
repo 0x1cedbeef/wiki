@@ -1,11 +1,11 @@
 <!-- TITLE: Poor Rsa -->
 <!-- SUBTITLE: A quick summary of Poor Rsa -->
 
-# 概要
+# 問題
 
 TODO
 
-## 準備
+# 解法
 
 ```python
 >>> from Crypto.PublicKey import RSA
