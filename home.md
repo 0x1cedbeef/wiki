@@ -9,11 +9,6 @@
 
 # 存在しているページ
 
-- 他人にとっては明らかに常識ではあるが自分にとっては非常識であるCTFテク  
-[CTF](/ctf)
-
-- CTF writeups, solutions  
-[CTF-solution](/ctf-solution)
-
-- Wiki.js関連情報とか
-[Wiki.js関連情報](/wikijs)
+- [他人にとっては明らかに常識ではあるが自分にとっては非常識であるCTFテク](/ctf)
+- [CTF writeups, solutions](/ctf-solution)
+- [Wiki.js関連情報とか](/wikijs)
