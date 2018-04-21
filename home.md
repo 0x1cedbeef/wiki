@@ -7,4 +7,4 @@
 
 [Wiki.js](https://wiki.js.org/)を使用しています
 
-:trollface:
+:+1:
