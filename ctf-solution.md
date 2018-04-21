@@ -22,6 +22,9 @@ TODO
 
 [rev](/ctf-solution/rev)
 
+## Web
+[web](/ctf-solution/web)
+
 ## Misc
 
 [misc](/ctf-solution/misc)
