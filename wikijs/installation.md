@@ -73,3 +73,5 @@ $ git --git-dir=/path/to/wiki/repo/.git remote -v
 origin	https://github.com/{username}/{reponame} (fetch)
 origin	https://github.com/{username}/{reponame} (push)
 ```
+
+解決策を質問中
