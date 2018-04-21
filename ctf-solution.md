@@ -12,7 +12,7 @@ TODO
 
 ## pwn
 
-[pwn](/ctf-solution/crypto)
+[pwn](/ctf-solution/pwn)
 
 ## Forensics
 
