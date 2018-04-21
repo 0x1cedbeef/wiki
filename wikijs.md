@@ -3,6 +3,6 @@
 
 # Wiki.js関連情報
 
-# ページ一覧
+## ページ一覧
 
 [Wiki.jsインストール](/wikijs/installation)
