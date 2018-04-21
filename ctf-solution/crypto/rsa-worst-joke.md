@@ -87,6 +87,9 @@ c = m ^ e mod n # encryption
 m = c ^ d mod n # decryption
 ```
 
+$c = m^e \mod n$
+$m = c^d \mod n$
+
 Pythonの**pow**関数は第3引数を取ると、`{第1引数}^{第2引数} % {第3引数}`を返すようになっている
 
 ```python
