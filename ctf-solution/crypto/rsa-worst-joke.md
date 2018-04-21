@@ -80,15 +80,8 @@ $ sudo -H pip3 install gmpy
 
 # 復号、そして暗号化
 
-RSAの暗号化はと復号は、
-
-```python
-c = m ^ e mod n # encryption
-m = c ^ d mod n # decryption
-```
-
-$c = m^e \mod n$
-$m = c^d \mod n$
+RSAの暗号化は $c = m^e \mod n$
+対して復号は $m = c^d \mod n$
 
 Pythonの**pow**関数は第3引数を取ると、`{第1引数}^{第2引数} % {第3引数}`を返すようになっている
 
