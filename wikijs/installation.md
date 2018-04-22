@@ -76,7 +76,7 @@ origin	https://github.com/{username}/{reponame} (push)
 
 こうなる理由として、`config.yml`がうまく設定されていないことが考えられる
 
-```yaml:config.yml
+```yaml
 git:
   url: 'https://github.com/{username}/{reponame}'
   branch: master
