@@ -74,4 +74,20 @@ origin	https://github.com/{username}/{reponame} (fetch)
 origin	https://github.com/{username}/{reponame} (push)
 ```
 
-解決策を質問中
+こうなる理由として、`config.yml`がうまく設定されていないことが考えられる
+
+```yaml:config.yml
+git:
+  url: 'https://github.com/{username}/{reponame}'
+  branch: master
+```
+
+こうなっていると、`node wiki configure`で設定したどうかに関わらず、`node wiki restart`や`pm2 reload wiki`するたびにremote originが*https*のものになってしまう  
+以下のように書き換えることで解決する
+
+```yaml
+git:
+  url: 'git@github.com:{username}/{reponame}'
+  branch: master
+```
+
