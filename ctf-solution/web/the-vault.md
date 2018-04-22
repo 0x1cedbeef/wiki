@@ -78,6 +78,8 @@ SALT PREFIXED HASH(SALT+WORD)
 DUNGEON_MASTER.
 ```
 
+&uarr; **.** （ドット）を忘れずに
+
 結果
 
 ```
