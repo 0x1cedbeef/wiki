@@ -56,7 +56,10 @@ origin	git@github.com:{github_username}/{reponame}.git (push)
 ```  
 このようにして*ssh*を使うように変更する
 
-## `git push`の方法が勝手に切り替わる
+## 再起動のたびにremote originが勝手に切り替わる
+
+sshでgitを使うように設定している場合の話です  
+（ほとんどそうだと思うけど）
 
 - 正しい状態（*ssh*を使うよう設定されている）
 
