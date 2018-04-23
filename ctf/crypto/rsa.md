@@ -44,6 +44,24 @@ UN\*Xコマンドの`ssh-keygen`でRSA暗号方式の鍵を作った場合、桁
 $p, q$ のビット数は同じだから、この場合二つの素数はともに1024bitである
 **N.B.** 1024bitの数には、*0* から始まるものも含まれることに注意（例えば *00....0010* （10進数で *2*）も1024bitの素数として扱われる）
 なお、 *-b* フラグでビット数を指定した場合はこの限りではなく、ビット数を変えられる（このコマンドの場合は1024bit以上）
+ここではこのコマンドを用いずに、他の方法で素数を生成する
+TODO
+
+## public exponent *e*
+
+
+## private exponent *d*
+
+
+## RSA暗号鍵のペア作成
 
 ここでは、あえて`ssh-keygen`を用いずに、python3のモジュール **[PyCrypto](https://pypi.org/project/pycrypto/)** でRSA暗号鍵のペアを作成する
 
+```python
+>>> p = {素数p}
+>>> q = {素数q}
+>>> n = p*q
+>>> totient_n = (p - 1)*(q - 1)
+>>> message = 'Call me Ishmael.'
+>>> m = int.from_bytes(s.encode(), 'big')
+>>> 
