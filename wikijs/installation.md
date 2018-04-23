@@ -77,6 +77,7 @@ origin	https://github.com/{username}/{reponame} (fetch)
 origin	https://github.com/{username}/{reponame} (push)
 ```
 
+このように、再起動（`pm2 reload wiki`した場合も含めて）したときに、勝手に切り替わってしまう症状が発生した
 こうなる理由として、`config.yml`がうまく設定されていないことが考えられる
 
 ```yaml
@@ -94,3 +95,4 @@ git:
   branch: master
 ```
 
+これで`pm2 reload wiki`、`node wiki restart`しても *ssh* をremote originにする設定が書き換わらなかった
