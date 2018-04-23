@@ -10,3 +10,5 @@
 ## Forensics
 
 なんだか最近 *Misc* ジャンルに吸収されてきてませんか？（悲しい :cry: ）
+
+[forensics](/ctf/forensics)
