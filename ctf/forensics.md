@@ -4,5 +4,10 @@
 # USB
 ## キーボード入力の**key code**
 
+[規格書より優しい解説ページ](https://docs.mbed.com/docs/ble-hid/en/latest/api/md_doc_HID.html)
+
 [USB規格書PDF](http://www.usb.org/developers/hidpage/Hut1_12v2.pdf)
-key codeについてはSection 10を見よ
+key codeについてはSection 10を参照
+
+## データ転送
+
