@@ -116,8 +116,41 @@ $ sudo systemctl stop nginx
 $ sudo vim /etc/nginx/sites-available/{yourdomain.com}.conf
 ```
 
-```vim
-sosuosuodf
+内容は以下のようにする
+なお、 [^300] を参考にした
+
+```
+server {
+  listen      [::]:80 ipv6only=off;
+  server_name {wiki.yourdomain.com};
+  return      301 https://$server_name$request_uri;
+}
+server {
+  listen      443 ssl http2;
+  listen      [::]:443 ssl http2;
+  server_name {wiki.yourdomain.com};
+
+  ssl_session_timeout 1d;
+  ssl_session_cache   shared:SSL:50m;
+  ssl_session_tickets off;
+
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 $
+  ssl_prefer_server_ciphers on;
+
+  ssl_certificate     /etc/letsencrypt/live/{yourdomain.com}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{yourdomain.com}/privkey.pem;
+
+  location / {
+    proxy_set_header    Host $http_host;
+    proxy_set_header    X-Real-IP $remote_addr;
+    proxy_pass          http://127.0.0.1:8080;
+    proxy_http_version  1.1;
+    proxy_set_header    Upgrade $http_upgrade;
+    proxy_set_header    Connection "upgrade";
+    proxy_next_upstream error timeout http_502 http_503 http_504;
+  }
+}
 ```
 
 
@@ -127,3 +160,4 @@ sosuosuodf
 [^101]: [ワイルカードSSLサーバ証明書とは](https://www.websecurity.symantec.com/ja/jp/theme/ssl-wildcard)
 [^150]: [Nginx on Ubuntu 16.04 (xenial)](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx)
 [^200]: [Let's Encryptのワイルドカード証明書を早速発行してもらう](https://narusejun.com/archives/23/)
+[^300]: [Installing Wiki.js on Ubuntu 16.04](https://www.theo-andreou.org/?p=1744)
