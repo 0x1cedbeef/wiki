@@ -24,7 +24,7 @@ Digitaloceanの場合は **Networking &rarr; Domains**から新しく設定を�
 ![Digitalocean 01](/uploads/img/Digitalocean01.png "Digitalocean 01")
 
 ここから *Aレコード*を追加する
-ここではのちにワイルドカード証明書を使うことを考慮して、*example.com* のようなルートドメインではなく、**wiki.example.com**のようにサブドメインを指定する
+ここではのちにワイルドカード証明書を使うことを考慮して、*example\.com* のようなルートドメインではなく、**wiki.example.com**のようにサブドメインを指定する
 *TTL (Time To Live)*はデフォルトのままで構わない
 
 *Aレコード*の追加が終わったら、ドメインから正しくサーバに飛べるか確認をする
