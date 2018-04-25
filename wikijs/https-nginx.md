@@ -178,6 +178,10 @@ $ node wiki stop && node wiki configure
 
 ![Port And Host](/uploads/img/port_and_host.png "Port And Host")
 
+Hostに`{wiki.yourdomain.com}:443`
+Portに`8080`を設定するとうまくいく
+
+あとは前と同じように設定をして、**Wiki.js**をスタートさせる
 
 
 ## 参考リンク
