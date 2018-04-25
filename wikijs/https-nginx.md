@@ -182,7 +182,12 @@ Hostに`{wiki.yourdomain.com}:443`
 Portに`8080`を設定するとうまくいく
 
 あとは前と同じように設定をして、**Wiki.js**をスタートさせる
+ターミナルにスタートしたとの表示が出たら、`http://{wiki.yourdomain.com}`にアクセスして、`https://{wiki.yourdomain.com}`にリダイレクトされることを確認する
 
+## さいごに
+
+お疲れ様でした
+Let's encryptの証明書は90日で無効になってしまうので、自動化しておくといいと思います
 
 ## 参考リンク
 [^100]: [ACME v2 and Wildcard Certificate Support is Live](https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579)
