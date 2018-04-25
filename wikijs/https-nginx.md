@@ -116,8 +116,8 @@ $ sudo systemctl stop nginx
 $ sudo vim /etc/nginx/sites-available/{yourdomain.com}.conf
 ```
 
-内容は以下のようにする
-なお、 [^300] を参考にした
+内容は、[^300] を参考にし以下のようにする
+なお、`localhost:8080`で**Wiki.js**が動いているものとする
 
 ```
 server {
@@ -152,6 +152,24 @@ server {
   }
 }
 ```
+
+書き終わったら、`/etc/nginx/sites-enabled`にsymlinkを貼って、デフォルトで置いてあるsymlinkを削除する
+
+```sh
+$ cd /etc/nginx/sites-enabled
+$ sudo ln -s /etc/nginx/sites-available/{yourdomain.com}.conf .
+$ unlink ./default
+$ ls -l
+total 0
+lrwxrwxrwx 1 root root 45 Xxx xx xx:xx {yourdomain}.conf -> /etc/nginx/sites-available/{yourdomain.com}.conf
+```
+
+
+## Wiki.jsの再設定
+
+ここまで来れば、あとは**Wiki.js**を再設定してNginxを再起動するだけ
+
+```sh
 
 
 
