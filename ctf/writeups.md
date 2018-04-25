@@ -1,5 +1,5 @@
-<!-- TITLE: Ctf Solution -->
-<!-- SUBTITLE: A quick summary of Ctf Solution -->
+<!-- TITLE: Ctf Writeups -->
+<!-- SUBTITLE: A quick summary of Ctf Writeups -->
 
 # 解いたCTFの解法集
 
