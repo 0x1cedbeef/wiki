@@ -13,7 +13,7 @@
 
 同時に、
 
-ドメイン登録時には、サーバのDNSを指定すること
+Freenomの場合ドメイン登録時には、画像のようにサーバのDNSなど、外部のDNSサーバを指定すること
 例えばDigitaloceanならば、プライマリには `ns1.digitalocean.com`、セカンダリには `ns2.digitalocean.com`を設定する
 
 
