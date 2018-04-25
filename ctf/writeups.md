@@ -8,23 +8,23 @@ TODO
 
 ## Crypto
 
-[crypto](/ctf-solution/crypto)
+[crypto](/ctf/writeups/crypto)
 
 ## pwn
 
-[pwn](/ctf-solution/pwn)
+[pwn](/ctf/writeups/pwn)
 
 ## Forensics
 
-[forensics](/ctf-solution/forensics)
+[forensics](/ctf/writeups/forensics)
 
 ## Rev (Bin)
 
-[rev](/ctf-solution/rev)
+[rev](/ctf/writeups/rev)
 
 ## Web
-[web](/ctf-solution/web)
+[web](/ctf/writeups/web)
 
 ## Misc
 
-[misc](/ctf-solution/misc)
+[misc](/ctf/writeups/misc)
