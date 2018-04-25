@@ -11,7 +11,7 @@
 まず今までWiki.jsをlocalhostで使ってきたなら、今ここでドメインの取得が必要になる
 お金をかけたくないなら、*.tk, .ga, .cf* などは[freenom](https://www.freenom.com/en/index.html)から無料で取得できる
 
-同時に、
+同時に、DNSの設定も行う
 
 Freenomの場合ドメイン登録時には、画像のようにサーバのDNSなど、外部のDNSサーバを指定すること
 例えばDigitaloceanならば、プライマリには `ns1.digitalocean.com`、セカンダリには `ns2.digitalocean.com`を設定する
