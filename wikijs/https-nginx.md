@@ -23,7 +23,18 @@ Digitaloceanの場合は **Networking &rarr; Domains**から新しく設定を�
 
 ![Digitalocean 01](/uploads/img/Digitalocean01.png "Digitalocean 01")
 
+ここから *Aレコード*を追加する
+ここではのちにワイルドカード証明書を使うことを考慮して、*example.com* のようなルートドメインではなく、**wiki.example.com**のようにサブドメインを指定する
+*TTL (Time To Live)*はデフォルトのままで構わない
 
+*Aレコード*の追加が終わったら、ドメインから正しくサーバに飛べるか確認をする
+
+```sh
+$ sudo systemctl start nginx 
+```
+
+初期状態ならnginxは、ディレクトリ`/etc/nginx/sites-enabled`のなかにsymlink`default`が入ったままなので、この状態で設定したドメインにアクセスすると、テストページが表示されるはずである
+なお、ここからのページ表示の確認作業は、キャッシュされたページの表示を防ぐためにも**ブラウザのシークレットモード**でアクセスすることをおすすめする
 
 ## SSL証明書の取得（Let's encrypt）
 
