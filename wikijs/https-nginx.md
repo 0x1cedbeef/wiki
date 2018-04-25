@@ -53,11 +53,12 @@ $ sudo apt-get install python-certbot-nginx
 
 
 この記事[^200] を参考にして、ワイルドカード証明書の発行をしてもらう
-なおこのコマンドはroot権限が必要
-`{youdomain.com}`部分を自分のドメインに書き換えること
+なおこのコマンドはroot権限が必要で、かつ証明書のパスが出力されるので、念のために`script`コマンドでログを取る
+また`{youdomain.com}`部分を自分のドメインに書き換えること
 例えば`wiki.example.com`なら、`--domain *.example.com`とする
 
 ```sh 
+$ script
 $ sudo certbot certonly \
 --manual \
 --preferred-challenges dns-01 \
@@ -83,7 +84,7 @@ Before continuing, verify the record is deployed.
 ![Acme Challenge](/uploads/img/acme_challenge.png "Acme Challenge")
 
 *TXTレコード*をDNSの設定に追加したら、ターミナルに戻って **Enter**キーを押す
-すると、
+すると、以下のような証明書の作成に成功したとの表示とが出る
 
 ```
 IMPORTANT NOTES:
@@ -99,6 +100,24 @@ IMPORTANT NOTES:
 
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
+```
+
+## Nginxのリダイレクトの設定
+
+まずNginxを一度止める
+
+```sh
+$ sudo systemctl stop nginx
+```
+
+ディレクトリ`/etc/nginx/sites-available`に、`{yourdomain.com}.conf`という名前で設定ファイルを作成して編集する
+
+```sh
+$ sudo vim /etc/nginx/sites-available/{yourdomain.com}.conf
+```
+
+```vim
+sosuosuodf
 ```
 
 
