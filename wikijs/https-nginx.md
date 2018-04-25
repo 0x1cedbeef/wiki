@@ -80,8 +80,28 @@ Before continuing, verify the record is deployed.
 
 この`eA…（中略）…mc`を、先程Aレコードを設定したサーバのコンパネまたはAPIから*TXTレコード*に登録する
 
-
 ![Acme Challenge](/uploads/img/acme_challenge.png "Acme Challenge")
+
+*TXTレコード*をDNSの設定に追加したら、ターミナルに戻って **Enter**キーを押す
+すると、
+
+```
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/{yourdomain.com}/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/{yourdomain.com}/privkey.pem
+   Your cert will expire on 20xx-xx-xx. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+```
+
+
 
 ## 参考リンク
 [^100]: [ACME v2 and Wildcard Certificate Support is Live](https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579)
