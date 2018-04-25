@@ -25,11 +25,29 @@ $ sudo apt-get install python-certbot-nginx
 参考: [Nginx on Ubuntu 16.04 (xenial)](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx)
 
 
-[^200]を参考にして、ワイルドカード証明書の発行をしてもらう
+[^200] を参考にして、ワイルドカード証明書の発行をしてもらう
+なおこのコマンドはroot権限が必要
 
+```sh 
+$ sudo certbot certonly \
+--manual \
+--preferred-challenges dns-01 \
+--server https://acme-v02.api.letsencrypt.org/directory \
+--domain *.yourdomain.com
+```
 
+メールアドレスを入力して、いま繋がっているIPアドレスを記録されることに同意すると、DNSのTXTレコードにこれを記録しろとの記述が出る
 
+```
+-------------------------------------------------------------------------------
+Please deploy a DNS TXT record under the name
+_acme-challenge.wiki.0x1cedbeef.cf with the following value:
 
+eA…（中略）…mc
+
+Before continuing, verify the record is deployed.
+-------------------------------------------------------------------------------
+```
 
 
 ## 参考リンク
