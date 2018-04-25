@@ -9,6 +9,5 @@
 
 # 存在しているページ
 
-- [自分にとっては非常識であるCTFテク](/ctf)
-- [CTF writeups, solutions](/ctf-solution)
+- [CTF関連](/ctf)
 - [Wiki.js関連情報とか](/wikijs)
