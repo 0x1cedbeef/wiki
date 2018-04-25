@@ -25,7 +25,7 @@ Digitaloceanの場合は **Networking &rarr; Domains**から新しく設定を�
 
 ここから *Aレコード*を追加する
 ここではのちにワイルドカード証明書を使うことを考慮して、*example[.]com* のようなルートドメインではなく、**wiki.example[.]com**のようにサブドメインを指定する
-*TTL (Time To Live)*はデフォルトのままで構わない
+また、*TTL (Time To Live)*はデフォルトのままで構わない
 
 *Aレコード*の追加が終わったら、ドメインから正しくサーバに飛べるか確認をする
 
@@ -39,11 +39,9 @@ $ sudo systemctl start nginx
 ## SSL証明書の取得（Let's encrypt）
 
 [Let's encrypt](https://letsencrypt.org/)は最近ワイルドカード証明書を発行してくれるようになった。[^100] [^101]
+せっかくなので（？）*Let's encrypt*の証明書を使って設定してみる
 
-
-
-
-まず、証明書を取得するためのパッケージ（*certbot*）をインストールする
+まず、証明書を取得するためのパッケージ（*certbot*）をインストールする [^150]
 
 ```sh
 $ sudo apt-get update
@@ -53,7 +51,7 @@ $ sudo apt-get update
 $ sudo apt-get install python-certbot-nginx 
 ```
 
-参考: [Nginx on Ubuntu 16.04 (xenial)](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx)
+
 
 
 [^200] を参考にして、ワイルドカード証明書の発行をしてもらう
@@ -84,4 +82,5 @@ Before continuing, verify the record is deployed.
 ## 参考リンク
 [^100]: [ACME v2 and Wildcard Certificate Support is Live](https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579)
 [^101]: [ワイルカードSSLサーバ証明書とは](https://www.websecurity.symantec.com/ja/jp/theme/ssl-wildcard)
+[^150]: [Nginx on Ubuntu 16.04 (xenial)](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx)
 [^200]: [Let's Encryptのワイルドカード証明書を早速発行してもらう](https://narusejun.com/archives/23/)
