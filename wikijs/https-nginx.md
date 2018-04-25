@@ -4,13 +4,25 @@
 # NginxとLet's encryptでリバースプロキシを実現
 
 [公式wikiのページ ](https://docs.requarks.io/wiki/admin-guide/setup-nginx)にもnginxをリバースプロキシとしてhttpsでウェブに公開する手順が載っているが、大分ハマってしまったので、ここに手順を残す
+以下、サーバのOSを*Ubuntu 16.04*を前提として書く
+
+## ドメインの取得とDNSの設定
+
+まず今までWiki.jsをlocalhostで使ってきたなら、今ここでドメインの取得が必要になる
+お金をかけたくないなら、*.tk, .ga, .cf* などは[freenom](https://www.freenom.com/en/index.html)から無料で取得できる
+
+同時に、
+
+ドメイン登録時には、サーバのDNSを指定すること
+例えばDigitaloceanならば、プライマリには `ns1.digitalocean.com`、セカンダリには `ns2.digitalocean.com`を設定する
+
 
 ## SSL証明書の取得（Let's encrypt）
 
 [Let's encrypt](https://letsencrypt.org/)は最近ワイルドカード証明書を発行してくれるようになった。[^100] [^101]
 
 
-以下、サーバのOSを*Ubuntu 16.04*を前提として書く
+
 
 まず、証明書を取得するためのパッケージ（*certbot*）をインストールする
 
