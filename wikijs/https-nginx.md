@@ -170,6 +170,13 @@ lrwxrwxrwx 1 root root 45 Xxx xx xx:xx {yourdomain}.conf -> /etc/nginx/sites-ava
 ここまで来れば、あとは**Wiki.js**を再設定してNginxを再起動するだけ
 
 ```sh
+$ cd /path/to/wiki
+$ node wiki stop && node wiki configure 
+```
+
+ここのアドレスとポートの設定で四苦八苦したが、結局のところこうすればよい
+
+![Port And Host](/uploads/img/port_and_host.png "Port And Host")
 
 
 
