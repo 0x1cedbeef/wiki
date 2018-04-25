@@ -25,6 +25,8 @@ $ sudo apt-get install python-certbot-nginx
 参考: [Nginx on Ubuntu 16.04 (xenial)](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx)
 
 
+[^200]を参考にして、ワイルドカード証明書の発行をしてもらう
+
 
 
 
@@ -33,4 +35,4 @@ $ sudo apt-get install python-certbot-nginx
 ## 参考リンク
 [^100]: [ACME v2 and Wildcard Certificate Support is Live](https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579)
 [^101]: [ワイルカードSSLサーバ証明書とは](https://www.websecurity.symantec.com/ja/jp/theme/ssl-wildcard)
-[Let's Encryptのワイルドカード証明書を早速発行してもらう](https://narusejun.com/archives/23/)
+[^200]: [Let's Encryptのワイルドカード証明書を早速発行してもらう](https://narusejun.com/archives/23/)
