@@ -7,7 +7,7 @@
 
 ## SSL証明書の取得（Let's encrypt）
 
-[Let's encrypt](https://letsencrypt.org/)は最近ワイルドカード証明書を発行してくれるようになった。[^100][^101]
+[Let's encrypt](https://letsencrypt.org/)は最近ワイルドカード証明書を発行してくれるようになった。[^100] [^101]
 
 
 以下、サーバのOSを*Ubuntu 16.04*を前提として書く
