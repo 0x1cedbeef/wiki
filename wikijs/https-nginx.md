@@ -19,8 +19,11 @@ Freenomの場合ドメイン登録時には、画像のようにサーバのDNS�
 ![Freenom](/uploads/img/freenom.png "Freenom")
 
 登録が終わったら、今度はサーバのコンパネからDNSの設定を行う（サーバ会社がAPIを用意してあって、それを使うならばこの限りではない）
+Digitaloceanの場合は **Networking &rarr; Domains**から新しく設定をする
 
 ![Digitalocean 01](/uploads/img/Digitalocean01.png "Digitalocean 01")
+
+
 
 ## SSL証明書の取得（Let's encrypt）
 
