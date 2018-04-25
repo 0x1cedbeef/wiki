@@ -5,7 +5,7 @@
 
 ## RSA
 
-[RSA基礎](/ctf/crypto/rsa)
+[RSA基礎](/ctf/techniques/crypto/rsa)
 
 ### RSAへの攻撃方法
 
