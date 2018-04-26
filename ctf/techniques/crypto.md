@@ -9,4 +9,4 @@
 
 ### RSAへの攻撃方法
 
-[小さいe: Small public exponent](/ctf/crypto/rsa-small-public-exponent) &larr まだ
+[小さいe: Small public exponent](/ctf/crypto/rsa-small-public-exponent) &larr; まだ
