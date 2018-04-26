@@ -118,6 +118,7 @@ $ sudo vim /etc/nginx/sites-available/{yourdomain.com}.conf
 
 内容は、[^300] を参考にし以下のようにする
 なお、`localhost:8080`で**Wiki.js**が動いているものとする
+ついでに、直接IPアドレスでアクセスされてもリダイレクトするようにした
 
 ```
 server {
@@ -140,6 +141,10 @@ server {
 
   ssl_certificate     /etc/letsencrypt/live/{yourdomain.com}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/{yourdomain.com}/privkey.pem;
+	
+	if ($http_host != {wiki.yourdomain.com}) {
+    return 301 https://{wiki.yourdomain.com};
+  }
 
   location / {
     proxy_set_header    Host $http_host;
