@@ -1,5 +1,5 @@
 <!-- TITLE: Rsa Worst Joke -->
-<!-- SUBTITLE: A quick summary of Rsa Worst Joke -->
+<!-- SUBTITLE: Securinets CTF Quals 2018: The worst RSA Joke -->
 
 # 問題
 
