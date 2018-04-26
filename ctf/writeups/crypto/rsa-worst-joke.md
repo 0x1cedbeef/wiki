@@ -1,4 +1,4 @@
-<!-- TITLE: Rsa Worst Joke -->
+<!-- TITLE: The worst RSA Joke -->
 <!-- SUBTITLE: Securinets CTF Quals 2018: The worst RSA Joke -->
 
 # 問題
