@@ -142,7 +142,7 @@ server {
   ssl_certificate     /etc/letsencrypt/live/{yourdomain.com}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/{yourdomain.com}/privkey.pem;
 	
-	if ($http_host != {wiki.yourdomain.com}) {
+  if ($http_host != {wiki.yourdomain.com}) {
     return 301 https://{wiki.yourdomain.com};
   }
 
