@@ -1,5 +1,5 @@
 <!-- TITLE: Poor Rsa -->
-<!-- SUBTITLE: A quick summary of Poor Rsa -->
+<!-- SUBTITLE: AlexCTF: CR4: Poor RSA -->
 
 # 問題
 [ctftime](https://ctftime.org/task/3350)
