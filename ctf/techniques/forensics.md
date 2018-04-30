@@ -16,3 +16,10 @@ key codeについてはSection 10を参照
 
 ## データ転送
 
+# Memory forensics
+
+## Volatility
+
+https://github.com/volatilityfoundation/volatility
+
+[volatility](/ctf/techniques/forensics/vol)
