@@ -12,3 +12,7 @@
 なんだか最近 *Misc* ジャンルに吸収されてきてませんか？（悲しい :cry: ）
 
 [forensics](/ctf/techniques/forensics)
+
+## Pwn
+
+[pwn](/ctf/techniques/pwn)
