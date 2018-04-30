@@ -23,6 +23,19 @@ b'Hello, World!'
 5735816763073854918203775149089
 ```
 
+または、*binascii*を用いて変換することもできる
+
+```python
+>>> import binascii
+>>> s = 'Hello, World!'
+>>> s.encode()
+b'Hello, World!'
+>>> binascii.hexlify(s.encode())
+b'48656c6c6f2c20576f726c6421'
+>>> int('0x' + binascii.hexlify('Hello, World!'.encode()).decode('utf8'), 16)
+5735816763073854918203775149089
+```
+
 文字列 $s$ に対し, まず[str.encode()](https://docs.python.org/3/library/stdtypes.html#str.encode)でbytes型に変換して、その結果を数値（int型）に[int.from_bytes()](https://docs.python.org/3/library/stdtypes.html#int.from_bytes)を用いて変換している.
 *int.from_bytes*の第2引数の *'big'* は, *big endian*を意味していて, バイト列をそのまま順番に先頭から処理して先頭から格納することを示している. 
 （あえて言うなら, *little endian*として処理しないということでもある. 補足として*big endian*で処理したときと, *little endian*で処理したときの違いを示す）
