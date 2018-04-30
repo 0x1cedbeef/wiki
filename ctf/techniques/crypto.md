@@ -1,7 +1,7 @@
 <!-- TITLE: Crypto -->
 <!-- SUBTITLE: A quick summary of Crypto -->
 
-# Crypto
+# Public Key Cryptography
 
 ## RSA
 
