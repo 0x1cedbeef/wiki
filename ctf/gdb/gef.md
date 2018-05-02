@@ -28,5 +28,36 @@ source ~/gef/gef.py
 
 [video](https://youtu.be/KWG7prhH-ks){.youtube}
 
+### telescope 
+
+gdb-pedaのように、gefでも*telescope*コマンドが使える（正しくは*dereference*コマンドにaliasが貼られている）
+pedaのように、`telescope 25`としてもスタックフレームは表示されない
+
+代わりに、`telescope $esp l25`とすれば表示される
+
+
 ## gef-extras
+
+### *x*コマンド上書き対策
+
+gef-extrasをインストールすると、*x*コマンド(examine)がWinDBG互換のコマンドに上書きされてしまう場合がある
+その場合、`/path/to/gef-extras/scripts/windbg.py`を編集して該当のコマンドを書き換える
+
+- 元の内容
+```python
+class WindbgXCommand(GenericCommand):
+    """WinDBG compatibility layer: x - search symbol."""
+    _cmdline_ = "x"
+    _syntax_  = "{:s} REGEX".format(_cmdline_)
+```
+
+- 書き換え後
+```python
+class WindbgXCommand(GenericCommand):
+    """WinDBG compatibility layer: x - search symbol."""
+    _cmdline_ = "winx"
+    _syntax_  = "{:s} REGEX".format(_cmdline_)
+```
+
+こうすれば、*x*コマンドがいままで通り使える
 
