@@ -41,13 +41,13 @@ pedaのように、`telescope 25`としてもスタックフレームは表示�
 
 *breakpoint*にひっかかると自動でこの画面が表示されるが、先述の*telescope*などでターミナル画面の上の方に行ってしまって、もう一度見たい！というときは、迷わずこのコマンドを打とう
 
-&#8942;
 
 ```
 gef➤  context
 [ Legend: Modified register | Code | Heap | Stack | String ]
 ──────────────────────────────────────────────────────────────────────────────[ registers ]────
 $eax   : 0xffffd248  →  "AAAA"
+⋮
 ```
 
 
