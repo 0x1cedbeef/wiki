@@ -275,6 +275,5 @@ Shellが起動した
 
 # スクリプト化しよう
 
----
 
 [^1]: [format string attackによるGOT overwriteをやってみる](http://inaz2.hatenablog.com/entry/2014/04/20/041453)
