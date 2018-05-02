@@ -18,5 +18,5 @@ $ vim ~/.gdbinit
 source ~/gef/gef.py
 ```
 
-N.B 他にpedaなどのプラグインがsourceされている場合、最後にsourceされたプラグインが有効になってしまう
+> N.B 他にpedaなどのプラグインがsourceされている場合、最後にsourceされたプラグインが有効になってしまう
 .{.is-warning}
