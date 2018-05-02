@@ -18,4 +18,15 @@ $ vim ~/.gdbinit
 source ~/gef/gef.py
 ```
 
-(N.B 他にpedaなどのプラグインがsourceされている場合、最後にsourceされたプラグインが有効になってしまう
+**N.B** 他にpedaなどのプラグインがsourceされている場合、最後にsourceされたプラグインが有効になってしまう
+
+このほかに[gef-extras](https://github.com/hugsy/gef-extras)といった、拡張機能も用意されている
+
+## 使い方など
+
+作者の方がチュートリアルビデオを作っている
+
+[video](https://youtu.be/KWG7prhH-ks){.youtube}
+
+## gef-extras
+
