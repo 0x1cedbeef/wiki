@@ -28,12 +28,25 @@ source ~/gef/gef.py
 
 [video](https://youtu.be/KWG7prhH-ks){.youtube}
 
+## コマンド
+
 ### telescope 
 
 gdb-pedaのように、gefでも*telescope*コマンドが使える（正しくは*dereference*コマンドにaliasが貼られている）
 pedaのように、`telescope 25`としてもスタックフレームは表示されない
 
 代わりに、`telescope $esp l25`とすれば表示される
+
+### context
+
+*breakpoint*にひっかかると自動でこの画面が表示されるが、先述の*telescope*などでターミナル画面の上の方に行ってしまって、もう一度見たい！というときは、迷わずこのコマンドを打とう
+
+```
+gef➤  context
+[ Legend: Modified register | Code | Heap | Stack | String ]
+──────────────────────────────────────────────────────────────────────────────[ registers ]────
+$eax   : 0xffffd248  →  "AAAA"
+```
 
 
 ## gef-extras
