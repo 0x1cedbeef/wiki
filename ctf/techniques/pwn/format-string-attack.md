@@ -347,7 +347,7 @@ $ ls
 [*] Got EOF while sending in interactive
 ```
 
-**AAAA** (4byte) 入れる場合と、shellcodeなど含むpayloadでは長さが違うため、bufferのアドレスも変わってしまっている
+**AAAA** (4byte) 入れる場合と、shellcodeなど含むpayloadでは長さが違うため、bufのアドレスも変わってしまっている
 新たに表示されたアドレス、**0xffffcc38**で試してみる
 
 ```sh
