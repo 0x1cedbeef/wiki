@@ -73,7 +73,7 @@ gef➤  b *main+92
 Breakpoint 1 at 0x8048527
 ```
 
-次に、`<putchar@plt>`のアドレスを逆アセンブルして、GOT tableを除く
+次に、`<putchar@plt>`のアドレスを逆アセンブルして、GOT tableを覗く
 
 ```sh
 gef➤  disas 0x80483a0
