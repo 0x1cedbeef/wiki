@@ -323,6 +323,8 @@ p = process(['./fsb', payload])
 p.interactive()
 ```
 
+*bash*で実行してみる
+
 ```sh
 /path/to/dir$ ./fsb AAAA
 [+] buf = 0xffffcc98
