@@ -323,6 +323,7 @@ p.interactive()
 ```
 
 *bash*で実行してみる
+わかりにくいが、`/path/to/dir`がプロンプトについているシェルは普通のターミナルのシェルで、ついていないものがpwntoolsの`process.interactive()`で起動されたもの
 
 ```sh
 /path/to/dir$ ./fsb AAAA
