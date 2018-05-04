@@ -40,7 +40,7 @@ AAAA.ffffd517.00000064.00f0b5ff.ffffd20e.00000001.000000c2.ffffd304.ffffd20e.fff
 
 ## 調査
 
-まず、`print(buf)`に該当する部分にブレークポイントを貼る
+まず、`printf(buf)`に該当する部分にブレークポイントを貼る
 &#8942;
 
 ```sh
@@ -330,7 +330,6 @@ p.interactive()
 [+] buf = 0xffffcc98
 AAAA
 /path/to/dir$ python script.py 0xffffcc98
-<type 'str'>
 [+] Starting local process './fsb': pid 19913
 [*] Switching to interactive mode
 [+] buf = 0xffffcc38
@@ -345,7 +344,6 @@ $ ls
 
 ```sh
 /path/to/dir$ python script.py 0xffffcc38
-<type 'str'>
 [+] Starting local process './fsb': pid 19919
 [*] Switching to interactive mode
 [+] buf = 0xffffcc38
