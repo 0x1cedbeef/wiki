@@ -121,28 +121,85 @@ Dump of assembler code for function main:
 End of assembler dump.
 ```
 
-アセンブリを見ると、以下のことがわかる
+アセンブリを部分抜粋する
 
 &#8942;
 
-
 ```
-0x080485c0 <+12>:	mov    DWORD PTR [esp],0x80487a4
-0x080485c7 <+19>:	call   0x80484c4 <puts@plt>
-
-
+	 ⋮
+   0x080485c0 <+12>:	mov    DWORD PTR [esp],0x80487a4
+   0x080485c7 <+19>:	call   0x80484c4 <puts@plt>
+	 ⋮
+	 0x080485e9 <+53>:	mov    DWORD PTR [esp],0x80487b6
+   0x080485f0 <+60>:	call   0x80484b4 <printf@plt>
+	 ⋮
+	 0x080485f9 <+69>:	mov    DWORD PTR [esp],eax
+   0x080485fc <+72>:	call   0x80484b4 <printf@plt>
+   0x08048601 <+77>:	mov    DWORD PTR [esp],0xa
+   0x08048608 <+84>:	call   0x8048474 <putchar@plt>
+	 ⋮
+	 0x0804861a <+102>:	mov    DWORD PTR [esp],0x80487bb
+   0x08048621 <+109>:	call   0x80484c4 <puts@plt>
+	 ⋮
+	 0x08048656 <+162>:	mov    DWORD PTR [esp+0x4],0x80487d1
+	 ⋮
+	 0x0804866e <+186>:	mov    DWORD PTR [esp],0x80487d5
+   0x08048675 <+193>:	call   0x80484c4 <puts@plt>
+	 ⋮
+	 0x08048691 <+221>:	mov    DWORD PTR [esp+0x4],0x80487e6
+   0x08048699 <+229>:	mov    DWORD PTR [esp],0x80487e8
+   0x080486a0 <+236>:	call   0x80484a4 <fopen@plt>
+	 ⋮
 ```
 
+## @pltとはなんぞや
+
+http://tkmr.hatenablog.com/entry/2017/02/28/030528
+
+## 文字列のスタックへの積み込み
+
+*mov*命令でスタックに積まれた文字列らしきものを見ていく
+使うコマンドは *x/s* で、*examine string*を表している
+例えば`x/s 0x080487a4`なら、0x080487a4 [^5] から始まるバイト列を文字列として認識し、それを**文字列の終端**、すなわち *\x00* （ヌル文字）まで読んで出力する
+
+```gdb
+(gdb) x/s 0x080487a4
+0x80487a4 <__dso_handle+4>:	 "What's your name?"
+(gdb) x/s 0x080487b6
+0x80487b6 <__dso_handle+22>:	 "Hi, "
+(gdb) x/s 0x080487bb
+0x80487bb <__dso_handle+27>:	 "Do you want the flag?"
+(gdb) x/s 0x080487d1
+0x80487d1 <__dso_handle+49>:	 "no\n"
+(gdb) x/s 0x080487d5
+0x80487d5 <__dso_handle+53>:	 "I see. Good bye."
+(gdb) x/s 0x080487e6
+0x80487e6 <__dso_handle+70>:	 "r"
+(gdb) x/s 0x080487e8
+0x80487e8 <__dso_handle+72>:	 "flag.txt"
 ```
 
+`0x08048601`の部分はこの後述べる
+それぞれの文字列がスタックに積まれ、その直後の関数呼び出しの際の引数となっている
+例えば`0x080487a4`から始まる文字列`"What's your name?"`は、`0x080485c7`の命令から`puts`関数の引数となる
+もとのCのソースコードでは、おそらくこういった記述なのだろう
 
+```c
+puts("What's your name?");
+```
 
+`printf`関数にも同様にスタックから引数が渡されていく
+`fopen`関数の場合、引数をふたつ取る
 
+```sh
+$ man 3 fopen
+⋮
+SYNOPSIS
+       #include <stdio.h>
 
-
-
-
-
+       FILE *fopen(const char *path, const char *mode);
+⋮
+```
 
 
 `0x0804863e <+138>:	call   0x8048484 <fgets@plt>`で入力された文字列を、
@@ -155,4 +212,5 @@ End of assembler dump.
 
 
 
+[^5]: gdbの出力では `0x80487a4` だが、32bitアドレス空間は4byte （= 1word）として表されるので、先頭の*0*を省略せず書いた（個人の好み）
 [^10]: ここで出力される文字列は、 その命令の1つ前の*mov*命令から、`(gdb) x/s 0x080487d5` &rarr; `0x80487d5 <__dso_handle+53>:	 "I see. Good bye."`とわかる
