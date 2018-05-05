@@ -121,24 +121,29 @@ Dump of assembler code for function main:
 End of assembler dump.
 ```
 
-関数をcallしている命令にbreakpointを貼る
+アセンブリを見ると、以下のことがわかる
 
-```gdb
-(gdb) b *main+19
-Breakpoint 1 at 0x80485c7
-(gdb) b *main+48
-Breakpoint 2 at 0x80485e4
-(gdb) b *main+60
-Breakpoint 3 at 0x80485f0
-(gdb) b *main+72
-Breakpoint 4 at 0x80485fc
-(gdb) b *main+84
-Breakpoint 5 at 0x8048608
-(gdb) b *main+109
-Breakpoint 6 at 0x8048621
-```
+> 0x080485c0 <+12>:	mov    DWORD PTR [esp],0x80487a4
+> 0x080485c7 <+19>:	call   0x80484c4 <puts@plt>
 
 
 
-`0x080485c7 <+19>:	call   0x80484c4 <puts@plt>` で **What's your name?**が、
-`0x080485e4 <+48>:	call   0x8048484 <fgets@plt>` で 名前（先ほどは **beef** ）を入力、
+
+
+
+
+
+
+
+
+`0x0804863e <+138>:	call   0x8048484 <fgets@plt>`で入力された文字列を、
+`0x08048665 <+177>:	call   0x80484e4 <strcmp@plt>`で**no**と比較して、
+`0x0804866c <+184>:	jne    0x8048681 <main+205>`で等しくないならその後`0x0804868f <+219>:	jne    0x804861a <main+102>`の命令でループの先頭に戻す
+等しいならば
+`0x08048675 <+193>:	call   0x80484c4 <puts@plt>`で文字列を出力した後、[^10]
+`0x0804867f <+203>:	jmp    0x80486dc <main+296>`で *0x080486dc* に飛んで、終了する
+
+
+
+
+[^10]: ここで出力される文字列は、 その命令の1つ前の*mov*命令から、`(gdb) x/s 0x080487d5` &rarr; `0x80487d5 <__dso_handle+53>:	 "I see. Good bye."`とわかる
