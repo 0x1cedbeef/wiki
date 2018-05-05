@@ -123,8 +123,17 @@ End of assembler dump.
 
 アセンブリを見ると、以下のことがわかる
 
-> 0x080485c0 <+12>:	mov    DWORD PTR [esp],0x80487a4
-> 0x080485c7 <+19>:	call   0x80484c4 <puts@plt>
+&#8942;
+
+
+```
+0x080485c0 <+12>:	mov    DWORD PTR [esp],0x80487a4
+0x080485c7 <+19>:	call   0x80484c4 <puts@plt>
+
+
+```
+
+```
 
 
 
