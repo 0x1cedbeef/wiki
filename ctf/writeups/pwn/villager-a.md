@@ -154,6 +154,7 @@ End of assembler dump.
 
 ## @pltとはなんぞや
 
+TODO
 http://tkmr.hatenablog.com/entry/2017/02/28/030528
 
 ## 文字列のスタックへの積み込み
