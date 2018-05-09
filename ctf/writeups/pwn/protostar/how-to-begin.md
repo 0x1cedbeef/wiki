@@ -16,6 +16,8 @@ protostar login: user
 Password: user
 ```
 
+## ssh設定
+
 このままVM上で進めても良いが、sshでログインすると楽なのでぜひやろう
 
 [^10] より、ローカルで以下のコマンド
@@ -92,3 +94,51 @@ $ logout
 Last login: Wed May  9 14:27:33 2018 from 10.0.2.2
 user@protostar:~$ 
 ```
+
+# 重要な情報
+
+問題を解くにあたって、前もって設定することがいくつかある
+
+## 問題の場所
+
+`/opt/protostar/bin`
+
+## rootになる方法
+
+```bash
+user@protostar:~$ su
+Password: godmode
+root@protostar:/home/user# whoami
+root
+```
+
+なお`apt-get update`などは *Debian Squeeze* のサポート期限が切れているためデフォルトの設定では作動しない
+`/etc/apt/sources.list`を編集すれば可能だが、問題を解く上では必要ない
+
+## rootになってやるべきこと
+
+デフォルトではcoredumpが生成されないようになっており、問題を解くうえで大きな障害になるので設定する
+
+```bash
+root@protostar:/home/user# sysctl -a | grep suid_dumpable
+fs.suid_dumpable = 0
+root@protostar:/home/user# sysctl -w fs.suid_dumpable=2
+fs.suid_dumpable = 2
+root@protostar:/home/user# exit
+exit
+user@protostar:~$ ulimit -a | grep core
+core file size          (blocks, -c) 0
+user@protostar:~$ ulimit -c unlimited
+user@protostar:~$ ulimit -a | grep core
+core file size          (blocks, -c) unlimited
+```
+
+これでcoredumpが生成される
+ただし、生成されるパスが
+
+```bash
+user@protostar:~$ cat /proc/sys/kernel/core_pattern
+/tmp/core.%s.%e.%p
+```
+
+のように、`/tmp`以下なので注意すること
