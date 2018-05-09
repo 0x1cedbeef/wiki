@@ -97,5 +97,11 @@ Last login: Wed May  9 14:27:33 2018 from 10.0.2.2
 user@protostar:~$ 
 ```
 
+## 問題
+
+### Stack
+
+[stack5](/ctf/writeups/pwn/protostar/stack5)
+
 [^10]: [How to SSH to a VirtualBox guest externally through a host?](https://stackoverflow.com/questions/5906441/how-to-ssh-to-a-virtualbox-guest-externally-through-a-host)
 
