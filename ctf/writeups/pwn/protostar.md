@@ -8,7 +8,7 @@
 ## はじめ方
 
 Exploit challengeの2つ目のVM
-中身は*Debian Squeeze*であり、VirtualBoxで起動の際は **New &rarr; Linux/Ubuntu (32-bit) または Linux/Debian (32-bit)**を選ぶ
+中身は*Debian Squeeze*であり、VirtualBoxで起動の際は **New &rarr; Linux/Ubuntu (32-bit) または Linux/Debian (32-bit)** を選ぶ
 
 GUI(X window)はないので、メモリはそこまで充てなくとも良い
 
