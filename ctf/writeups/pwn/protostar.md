@@ -101,7 +101,11 @@ user@protostar:~$
 
 ### Stack
 
-[stack5](/ctf/writeups/pwn/protostar/stack5)
+バッファオーバーフローの問題を基礎から学べる
+
+
+- [stack5](/ctf/writeups/pwn/protostar/stack5)  
+shellcodeをNOP sledを交えながら実行する
 
 [^10]: [How to SSH to a VirtualBox guest externally through a host?](https://stackoverflow.com/questions/5906441/how-to-ssh-to-a-virtualbox-guest-externally-through-a-host)
 
