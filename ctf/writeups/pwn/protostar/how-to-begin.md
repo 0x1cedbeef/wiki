@@ -119,7 +119,7 @@ root
 
 デフォルトではcoredumpが生成されないようになっており、問題を解くうえで大きな障害になるので設定する
 
-```console
+```sh
 root@protostar:/home/user# sysctl -a | grep suid_dumpable
 fs.suid_dumpable = 0
 root@protostar:/home/user# sysctl -w fs.suid_dumpable=2
