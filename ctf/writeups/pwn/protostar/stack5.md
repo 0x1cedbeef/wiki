@@ -37,6 +37,8 @@ stack5
 
 # GDB解析 その1
 
+## バッファオーバーフローを試す
+
 例によって[`gef`](https://github.com/hugsy/gef/)を使う
 
 ```sh
@@ -85,7 +87,10 @@ $eip   : 0x61616174 ("taaa"?)
 ```
 
 `$eip` (次の命令のアドレスを格納するレジスタ) が明らかに通常ではありえない値に書き換えられていることがわかった
-この*"taaa"*の文字列が`$eax`からどれほどアドレスが離れているかを調べる
+
+## オフセットの値
+
+次にこの*"taaa"*の文字列が`$eax`からどれほどアドレスが離れているかを調べる
 
 ```sh
 gef➤  pattern search 0x61616174
@@ -158,4 +163,16 @@ gef➤  telescope $esp l30
 0xffffd2dc│+0x6c: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[...]"
 0xffffd2e0│+0x70: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[...]"
 0xffffd2e4│+0x74: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[...]"
+gef➤  c
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x1cedbeef in ?? ()
+⋮
+$eip   : 0x1cedbeef
+⋮
 ```
+
+このように、適切なオフセットとパディング(今回は*"A"*)を用いることで、`$eip`を任意の値に書き換えられることがわかった
+
+## どこに書き換えるか？
