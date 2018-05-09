@@ -42,6 +42,8 @@ Port 3022
 UserKnownHostsFile /dev/null
 ```
 
+sshでログイン
+
 ```sh
 (local) $ ssh Protostar 
 The authenticity of host '[127.0.0.1]:3022 ([127.0.0.1]:3022)' can't be established.
