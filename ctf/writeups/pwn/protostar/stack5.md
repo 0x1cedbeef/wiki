@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 
 # ファイルのコピー(scp)
 
-```sh
+```shell
 (local) $ scp Protostar:/opt/protostar/bin/stack5 .
 (local) $ ls | grep stack5
 stack5
@@ -41,7 +41,7 @@ stack5
 
 例によって[`gef`](https://github.com/hugsy/gef/)を使う
 
-```sh
+```shell
 (local) $ which gef
 gef: aliased to gdb -q --ix $HOME/gef/gef.py
 (local) $ gef ./stack5
@@ -176,3 +176,8 @@ $eip   : 0x1cedbeef
 このように、適切なオフセットとパディング(今回は*"A"*)を用いることで、`$eip`を任意の値に書き換えられることがわかった
 
 ## どこに書き換えるか？
+
+`$eip`を自由に書き換えられるということは、次に飛ばすアドレスを好きにできることである
+この`$eip`を書き換えたスタックのアドレスの直後にshellcodeを仕込んで見る
+
+ただし、`gets`を用いた際に新たにshellを開こうとすると、
