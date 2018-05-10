@@ -27,9 +27,9 @@ int main(int argc, char **argv)
 
 # ファイルのコピー(scp)
 
-```sh
+```shell
 $ scp Protostar:/opt/protostar/bin/stack5 .
-(local) $ ls | grep stack5
+$ ls | grep stack5
 stack5
 ```
 
@@ -42,9 +42,9 @@ stack5
 例によって[`gef`](https://github.com/hugsy/gef/)を使う
 
 ```shell
-(local) $ which gef
+$ which gef
 gef: aliased to gdb -q --ix $HOME/gef/gef.py
-(local) $ gef ./stack5
+$ gef ./stack5
 GEF for linux ready, type `gef' to start, `gef config' to configure
 66 commands loaded for GDB 7.11.1 using Python engine 3.5
 ⋮
@@ -67,7 +67,7 @@ End of assembler dump.
 breakpointを`gets`呼び出しの直後に貼って、文字列パターンを生成する
 このパターンは、のちにオフセットの長さを測るのに用いる
 
-```sh
+```gdb
 gef➤  b *main+21
 Breakpoint 1 at 0x80483d9: file stack5/stack5.c, line 11.
 gef➤  pattern create 128
