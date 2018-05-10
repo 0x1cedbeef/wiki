@@ -27,8 +27,8 @@ int main(int argc, char **argv)
 
 # ファイルのコピー(scp)
 
-```sh
-(local) $ scp Protostar:/opt/protostar/bin/stack5 .
+```shell
+$ scp Protostar:/opt/protostar/bin/stack5 .
 (local) $ ls | grep stack5
 stack5
 ```
