@@ -25,6 +25,9 @@ Port: 8080
 ```
 
 のように記入する
+以下のように
+
+![Localhost 8080](/uploads/img/localhost-8080.png "Localhost 8080")
 
 ## githubのrepoにpushできない
 
