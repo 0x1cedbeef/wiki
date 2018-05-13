@@ -43,7 +43,7 @@ IdentityFile /home/{username}/.ssh/{privatekeyname}
 ```
 
 2. `git remote -v`で設定を確認  
-```bash
+```console
 $ cd /path/to/wiki/
 $ cd repo
 $ git remote -v
@@ -51,7 +51,7 @@ origin	https://github.com/{github_username}/{reponame} (fetch)
 origin	https://github.com/{github_username}/{reponame} (push)
 ```  
 このようにpushに*https*を使うようになっていたら、
-```bash
+```console
 $ git remote set-url origin git@github.com:{github_username}/{reponame}.git
 $ git remote -v
 origin	git@github.com:{github_username}/{reponame}.git (fetch)
@@ -74,7 +74,7 @@ origin	git@github.com:{username}/{reponame}.git (push)
 
 - 異常時（*https*を使うように設定が変わっている）
 
-```shell
+```console
 $ git --git-dir=/path/to/wiki/repo/.git remote -v
 origin	https://github.com/{username}/{reponame} (fetch)
 origin	https://github.com/{username}/{reponame} (push)
