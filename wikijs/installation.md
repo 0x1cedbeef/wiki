@@ -66,7 +66,7 @@ sshでgitを使うように設定している場合の話です
 
 - 正しい状態（*ssh*を使うよう設定されている）
 
-```bash
+```console
 $ git --git-dir=/path/to/wiki/repo/.git remote -v
 origin	git@github.com:{username}/{reponame}.git (fetch)
 origin	git@github.com:{username}/{reponame}.git (push)
@@ -74,7 +74,7 @@ origin	git@github.com:{username}/{reponame}.git (push)
 
 - 異常時（*https*を使うように設定が変わっている）
 
-```bash
+```shell
 $ git --git-dir=/path/to/wiki/repo/.git remote -v
 origin	https://github.com/{username}/{reponame} (fetch)
 origin	https://github.com/{username}/{reponame} (push)
