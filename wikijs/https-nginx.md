@@ -1,7 +1,7 @@
-<!-- TITLE: Wiki.jsをNginxをリバースプロキシにしてhttps化 -->
-<!-- SUBTITLE: ワイルドカード証明書取得した意味が今のところない :joy: -->
+<!-- TITLE: NginxとLet's encryptでHTTPSリバースプロキシ -->
+<!-- SUBTITLE: ワイルドカード証明書取得した意味が今のところない -->
 
-# NginxとLet's encryptでリバースプロキシを実現
+# NginxとLet's encryptでHTTPSリバースプロキシ
 
 [公式wikiのページ ](https://docs.requarks.io/wiki/admin-guide/setup-nginx)にもnginxをリバースプロキシとしてhttpsでウェブに公開する手順が載っているが、大分ハマってしまったので、ここに手順を残す
 以下、サーバのOSを*Ubuntu 16.04*を前提として書く
