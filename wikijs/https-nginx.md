@@ -1,5 +1,5 @@
 <!-- TITLE: Wiki.jsをNginxをリバースプロキシにしてhttps化 -->
-<!-- SUBTITLE: ワイルドカード証明書取得した意味が今のところない :sad: -->
+<!-- SUBTITLE: ワイルドカード証明書取得した意味が今のところない :joy: -->
 
 # NginxとLet's encryptでリバースプロキシを実現
 
