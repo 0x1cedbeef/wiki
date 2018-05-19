@@ -3,4 +3,4 @@
 
 # `patchelf`によるglibcの変更
 
-[\[Linux\] 1つのホスト上の複数のglibcライブラリ](https://code.i-harness.com/ja/q/ced4b)
+[\[Linux\] 1つのホスト上の複数のglibcライブラリ gcc | CODE Q&amp;A [日本語]](https://code.i-harness.com/ja/q/ced4b)
