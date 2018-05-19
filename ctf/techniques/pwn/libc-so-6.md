@@ -11,6 +11,8 @@ $ patchelf --set-rpath /path/to/new/libc.so.6 {elf_file_name}
 
 もしくは
 
+[NixOS/patchelf: A small utility to modify the dynamic linker and RPATH of ELF executables](https://github.com/NixOS/patchelf)
+
 ```console
 $ patchelf --replace-needed libc.so.6 /path/to/new/libc.so.6 {elf_file_name}
 ```
