@@ -9,3 +9,11 @@
 $ ./patchelf --set-rpath /path/to/new/libc.so.6 {elf_file_name}
 ```
 
+もしくは
+
+```console
+$ patchelf --replace-needed liboriginal.so.1 libreplacement.so.1 my-program
+```
+
+のどちらか（試していないのでどちらが正しいかわからない）
+
