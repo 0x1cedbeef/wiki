@@ -8,3 +8,7 @@
 # Stack Overflow
 
 # Heap Overflow
+
+# Misc
+
+[ELFバイナリと共に与えられたlibc.so.6](/ctf/techniques/pwn/libc-so-6)
