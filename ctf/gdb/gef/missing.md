@@ -45,6 +45,8 @@ gef>  gef missing
 
 [Download – Keystone – The Ultimate Assembler](http://www.keystone-engine.org/download/)
 
+[keystone/COMPILE-NIX.md at master · keystone-engine/keystone](https://github.com/keystone-engine/keystone/blob/master/docs/COMPILE-NIX.md)
+
 [Ropper/README.md at master · sashs/Ropper](https://github.com/sashs/Ropper/blob/master/README.md)
 
 [Documentation – Capstone – The Ultimate Disassembler](https://www.capstone-engine.org/documentation.html)
