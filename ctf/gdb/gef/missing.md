@@ -31,3 +31,20 @@ $ sudo make install3
 $ sudo -H pip3 install ropper
 ```
 
+# 確認
+
+```console
+$ gdb -q
+GEF for linux ready, type `gef' to start, `gef config' to configure
+67 commands loaded for GDB 7.11.1 using Python engine 3.5
+gef>  gef missing
+[+] No missing command
+```
+
+# 参考
+
+[Download – Keystone – The Ultimate Assembler](http://www.keystone-engine.org/download/)
+
+[sashs/Ropper: Display information about files in different file formats and find gadgets to build rop chains for different architectures (x86/x86_64, ARM/ARM64, MIPS, PowerPC). For disassembly ropper uses the awesome Capstone Framework.](https://github.com/sashs/Ropper)
+
+(https://www.capstone-engine.org/documentation.html)
