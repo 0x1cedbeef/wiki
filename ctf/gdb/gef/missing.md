@@ -45,6 +45,6 @@ gef>  gef missing
 
 [Download – Keystone – The Ultimate Assembler](http://www.keystone-engine.org/download/)
 
-[sashs/Ropper: Display information about files in different file formats and find gadgets to build rop chains for different architectures (x86/x86_64, ARM/ARM64, MIPS, PowerPC). For disassembly ropper uses the awesome Capstone Framework.](https://github.com/sashs/Ropper)
+[Ropper/README.md at master · sashs/Ropper](https://github.com/sashs/Ropper/blob/master/README.md)
 
-(https://www.capstone-engine.org/documentation.html)
+[Documentation – Capstone – The Ultimate Disassembler](https://www.capstone-engine.org/documentation.html)
