@@ -22,6 +22,10 @@ source ~/gef/gef.py
 
 このほかに[gef-extras](https://github.com/hugsy/gef-extras)といった、拡張機能も用意されている
 
+## gef missing?
+
+[missing](/ctf/gdb/gef/missing)
+
 ## 使い方など
 
 作者の方がチュートリアルビデオを作っている
@@ -55,24 +59,7 @@ $eax   : 0xffffd248  →  "AAAA"
 
 ### *x*コマンド上書き対策
 
-gef-extrasをインストールすると、*x*コマンド(examine)がWinDBG互換のコマンドに上書きされてしまう場合がある
-その場合、`/path/to/gef-extras/scripts/windbg.py`を編集して該当のコマンドを書き換える
+公式で修正されたので削除
 
-- 元の内容
-```python
-class WindbgXCommand(GenericCommand):
-    """WinDBG compatibility layer: x - search symbol."""
-    _cmdline_ = "x"
-    _syntax_  = "{:s} REGEX".format(_cmdline_)
-```
 
-- 書き換え後
-```python
-class WindbgXCommand(GenericCommand):
-    """WinDBG compatibility layer: x - search symbol."""
-    _cmdline_ = "winx"
-    _syntax_  = "{:s} REGEX".format(_cmdline_)
-```
-
-こうすれば、*x*コマンドがいままで通り使える
 
