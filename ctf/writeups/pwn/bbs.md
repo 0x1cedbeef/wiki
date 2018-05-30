@@ -13,7 +13,9 @@ https://score.beginners.seccon.jp/files/0c6414e595b3c4052c7e105e6164cb1f/bbs_3e8
 
 [bbs.tar.gz](/uploads/bin/bbs.tar.gz)
 
-# gdb
+
+# 解析
+## gdb
 
 ```console
 gef> disas main
@@ -112,7 +114,7 @@ Dump of assembler code for function gets@plt:
 End of assembler dump.
 ```
 
-# libc version check
+## libc version check
 まずサーバの*libc*を調べる
 
 ```python
