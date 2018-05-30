@@ -75,6 +75,8 @@ gef> pattern search 0x6161616161616172
 上の結果から、**136バイト**埋めるとその次に **$rsp** の値を任意の値に書き換えられる
 ここからROPガジェットを使って任意の命令を実行していく
 
+## ROPガジェットとGOT
+
 ```console
 gef> ropper --search '% ?di'
 (snip)
