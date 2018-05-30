@@ -11,8 +11,6 @@ Port: 18373
 https://score.beginners.seccon.jp/files/0c6414e595b3c4052c7e105e6164cb1f/bbs_3e897818670a0db55eaed8109b6a73f0e03d54e7
 ```
 
-[bbs](/uploads/bin/bbs)
-
-![Digitalocean 01](/uploads/img/Digitalocean01.png "Digitalocean 01")
+![bbs](/uploads/bin/bbs)
 
 # 
