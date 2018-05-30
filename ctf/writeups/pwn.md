@@ -6,5 +6,7 @@
 
 [ksnctf: 4. Villager A](/ctf/writeups/pwn/villager-a)
 
+[BeginnersCTF 2018: BBS](/ctf/writeups/pwn/bbs)
+
 # ウェブサイト一覧
 [Protostar](/ctf/writeups/pwn/protostar)
