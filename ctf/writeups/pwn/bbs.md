@@ -192,3 +192,4 @@ offset_str_bin_sh = 0x18cd57
 
 # Exploit 
 
+systemのアドレスがわかるので、*offset_system*から**libc_base**が判明する (`libc_base = system_addr - offset_system`)
