@@ -80,4 +80,4 @@ gef>  gef missing
 
 [Documentation – Capstone – The Ultimate Disassembler](https://www.capstone-engine.org/documentation.html)
 
-[^10]: Ubuntu 16.04のcmakeはバージョンが最新バージョンより遅れているので、ソースからビルドしたほうがいいかもしれないですね
+[^10]: Ubuntu 16.04のcmakeはバージョンが[最新バージョン](https://cmake.org/download/)より遅れているので、ソースからビルドしたほうがいいかもしれないですね
