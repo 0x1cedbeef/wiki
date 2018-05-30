@@ -165,6 +165,11 @@ $ python leak.py
 system: 0x7f684e70e390
 puts  : 0x7f684e738690
 gets  : 0x7f684e737d80
+```
+
+[libc-database](https://github.com/niklasb/libc-database)で該当するlibcを探す
+
+```console
 $ cd /path/to/libc-database
 $ ./find system 390 puts 690 gets d80
 ubuntu-xenial-amd64-libc6 (id libc6_2.23-0ubuntu10_amd64)
