@@ -165,8 +165,16 @@ $ python leak.py
 system: 0x7f684e70e390
 puts  : 0x7f684e738690
 gets  : 0x7f684e737d80
+$ python leak.py 
+[+] Opening connection to pwn1.chall.beginners.seccon.jp on port 18373: Done
+[+] Receiving all data: Done (255B)
+[*] Closed connection to pwn1.chall.beginners.seccon.jp port 18373
+system: 0x7f5bf5f40390
+puts  : 0x7f5bf5f6a690
+gets  : 0x7f5bf5f69d80
 ```
 
+2回実行してアドレスが異なるので、**ASLR**が有効になっていることがわかる
 [libc-database](https://github.com/niklasb/libc-database)で該当するlibcを探す
 
 ```console
@@ -181,3 +189,6 @@ offset_read = 0x00000000000f7250
 offset_write = 0x00000000000f72b0
 offset_str_bin_sh = 0x18cd57
 ```
+
+# Exploit 
+
