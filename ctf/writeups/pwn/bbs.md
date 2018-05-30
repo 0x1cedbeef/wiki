@@ -58,5 +58,16 @@ gef> pattern create 256
 aaaaaaaabaaaaaaa...(snip)...faaaaaabgaaaaaab
 [+] Saved as '$_gef1'
 gef> r <<< $(python -c 'print "aaaaaaaabaaaaaaa...(snip)...faaaaaabgaaaaaab"')
-
+(snip)
+─────────────────────────────────────────────────────────────────────[ threads ]────
+[#0] Id 1, Name: "bbs_3e897818670", stopped, reason: SIGSEGV
+───────────────────────────────────────────────────────────────────────[ trace ]────
+[#0] 0x4006f9 → Name: main()
+────────────────────────────────────────────────────────────────────────────────────
+gef> x/gx $rsp
+0x7fffffffdff8:	0x6161616161616172
+gef> pattern search 0x6161616161616172
+[+] Searching '0x6161616161616172'
+[+] Found at offset 136 (little-endian search) likely
+[+] Found at offset 129 (big-endian search) 
 ```
