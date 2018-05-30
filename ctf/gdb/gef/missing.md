@@ -12,11 +12,17 @@ gef>  gef missing
 [*] Command `capstone-disassemble` is missing, reason  →  Missing `capstone` package for Python3. Install with `pip3 install capstone`.
 ```
 
-そのまま`pip3`でインストールすると **module 'keystone' has no attribute 'KS_ARCH_X86'** というエラーでうまくいかなくなるので、一部手動でインストール
+そのまま`pip3`でインストールすると **module 'keystone' has no attribute 'KS_ARCH_X86'** というエラーでうまくいかなくなるので、一部手動でインストールする
+まずは依存パッケージ [^10]
 
 ```console
 $ sudo apt update && sudo apt install -y build-essential python3 python3-dev python3-pip gdb libcapstone3 libcapstone-dev cmake
 $ sudo -H pip3 install unicorn capstone filebytes
+```
+
+*keystone*をソースからビルド
+
+```console
 $ wget https://github.com/keystone-engine/keystone/archive/0.9.1.tar.gz
 $ tar xzvf 0.9.1.tar.gz 
 $ cd keystone-0.9.1/
@@ -24,10 +30,26 @@ $ mkdir build
 $ cd build
 $ ../make-share.sh
 $ sudo make install
+```
+
+`sudo ldconfig`で共有ライブラリの依存情報を更新して、`kstool`コマンドが使えることを確認する
+
+```console
 $ sudo ldconfig
 $ kstool 
+```
+
+pythonバインディングをインストールする
+*Python2*用にインストールするならば、代わりに`sudo make install`を実行する
+
+```console
 $ cd ../bindings/python/
 $ sudo make install3
+```
+
+最後に*ropper*をインストールする
+
+```console
 $ sudo -H pip3 install ropper
 ```
 
@@ -50,3 +72,5 @@ gef>  gef missing
 [Ropper/README.md at master · sashs/Ropper](https://github.com/sashs/Ropper/blob/master/README.md)
 
 [Documentation – Capstone – The Ultimate Disassembler](https://www.capstone-engine.org/documentation.html)
+
+[^10]: Ubuntu 16.04のcmakeはバージョンが最新バージョンより遅れているので、ソースからビルドしたほうがいいかもしれないですね
