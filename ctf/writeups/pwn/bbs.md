@@ -1,5 +1,5 @@
-<!-- TITLE: bbs -->
-<!-- SUBTITLE: A quick summary of Bbs -->
+<!-- TITLE: BBS -->
+<!-- SUBTITLE: A quick summary of BBS -->
 
 # 問題概要
 ```
