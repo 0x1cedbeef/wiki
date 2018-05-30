@@ -4,7 +4,7 @@
 # `gef missing`のアレ
 
 ```console
-gef➤  gef missing
+gef>  gef missing
 [*] Command `assemble` is missing, reason  →  Missing `keystone-engine` package for Python3, install with: `pip3 install keystone-engine`.
 [*] Command `ropper` is missing, reason  →  Missing `ropper` package for Python3, install with: `pip3 install ropper`.
 [*] Command `unicorn-emulate` is missing, reason  →  Missing `unicorn` package for Python3. Install with `pip3 install unicorn`.
