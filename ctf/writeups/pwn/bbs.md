@@ -13,5 +13,4 @@ https://score.beginners.seccon.jp/files/0c6414e595b3c4052c7e105e6164cb1f/bbs_3e8
 
 [bbs](/uploads/bin/bbs "bbs")
 
-![Freenom](/uploads/img/freenom.png "Freenom")
 # 
