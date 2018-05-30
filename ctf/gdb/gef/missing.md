@@ -14,7 +14,7 @@ gef>  gef missing
 
 そのまま`pip3`でインストールすると **module 'keystone' has no attribute 'KS_ARCH_X86'** というエラーでうまくいかなくなるので、一部手動でインストールする
 
-## 依存パッケージ(*unicorn, capstone*)
+## unicorn, capstone (依存パッケージ)
 
 まずは依存パッケージ [^10]
 
