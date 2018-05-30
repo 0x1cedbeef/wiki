@@ -71,3 +71,5 @@ gef> pattern search 0x6161616161616172
 [+] Found at offset 136 (little-endian search) likely
 [+] Found at offset 129 (big-endian search)
 ```
+
+上の結果から、**136バイト**埋めるとその次に**$rsp**の値を任意の値に書き換えられる
