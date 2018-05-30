@@ -1,4 +1,4 @@
-<!-- TITLE: Bbs -->
+<!-- TITLE: bbs -->
 <!-- SUBTITLE: A quick summary of Bbs -->
 
 # 問題概要
