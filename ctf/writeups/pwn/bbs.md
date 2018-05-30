@@ -49,3 +49,14 @@ PIE                           : No
 Fortify                       : No
 RelRO                         : Partial
 ```
+
+`0x00000000004006c4 <+35>`で`gets`を呼んでいてかつ*stack canary*もないので、*stack overflow*の脆弱性がある用に思えるので、試してみる
+
+```console
+gef> pattern create 256
+[+] Generating a pattern of 256 bytes
+aaaaaaaabaaaaaaa...(snip)...faaaaaabgaaaaaab
+[+] Saved as '$_gef1'
+gef> r <<< $(python -c 'print "aaaaaaaabaaaaaaa...(snip)...faaaaaabgaaaaaab"')
+
+```
