@@ -30,7 +30,7 @@ $ ldd ./hello64
 
 このように、システムのデフォルトの動的ライブラリと動的リンカが使われていることがわかる
 これは`patchelf --print-rpath <filename>`と`patchelf --print-interpreter <filename>`で知ることもできる
-*N.B. 前者のコマンドは、動的ライブラリの* **サーチパス** *を表示することに注意*
+*N.B. 前者のコマンドは、動的ライブラリの* ***サーチパス*** *を表示することに注意*
 
 ```console
 $ patchelf --print-rpath ./hello64
