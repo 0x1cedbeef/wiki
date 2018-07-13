@@ -5,7 +5,9 @@
 
 [\[Linux\] Multiple glibc libraries on a single host gcc | CODE Q&A \[English\]](https://code.i-harness.com/en/q/ced4b)
 
-[NixOS/patchelf: A small utility to modify the dynamic linker and RPATH of ELF executables](https://github.com/NixOS/patchelf)
+*patchelf* [^10] はすでにビルドされたELF形式実行ファイルの動的リンカを、任意のパスのものに変更することができる
+[このページ](/ctf/techniques/pwn/libc-so-6/build-glibc)でコンパイルした
+
 
 x86_64の場合
 
@@ -46,6 +48,5 @@ $ ldd ./hello64
 ```
 
 
-もう何が正しいのか全くもってわからない
-
+[^10]: [NixOS/patchelf: A small utility to modify the dynamic linker and RPATH of ELF executables](https://github.com/NixOS/patchelf)
 
