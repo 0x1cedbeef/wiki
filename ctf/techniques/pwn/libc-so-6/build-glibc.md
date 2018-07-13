@@ -47,7 +47,7 @@ Hello, World!
 
 ## x86 (i686)
 
-[リンク先の回答](https://stackoverflow.com/a/8074427/8501077)を参考にビルドする
+ここ [^20] を参考にビルドする
 なお、*i686*部分を*i386*に変えて`configure`しても、**deprecated**だと言われてしまうので、このままビルドする
 
 ```console 
@@ -62,8 +62,9 @@ $ make -j8 && make install
 ```
 
 
-# 参考リンク
 [^10]: [linux - Multiple glibc libraries on a single host - Stack Overflow](https://stackoverflow.com/a/851229/8501077)
+
+[^20]: [linux - How to compile glibc 32bit on an x86_64 machine - Stack Overflow](https://stackoverflow.com/a/8074427/8501077)
 
 [linux - How to compile glibc 32bit on an x86_64 machine - Stack Overflow](https://stackoverflow.com/questions/8004241/how-to-compile-glibc-32bit-on-an-x86-64-machine)
 
