@@ -20,6 +20,7 @@ patchelf 0.9
 それ以外の場合は手動でインストールする
 公式ページ [^10] の**Download**のヘッダから最新版のソースを入手し、あとは適当なパスでビルドする [^20]
 
+
 # x86_64の場合
 
 ## ビルド済みのバイナリの情報
@@ -86,6 +87,12 @@ Hello, World!
 ```
 
 動的ライブラリと動的リンカが任意のものに変更され、かつ期待通りの実行結果を返すことが確認できた
+
+
+# x86の場合
+
+x86_64とほぼ同じなので割愛する
+異なる点は、32ビットELFバイナリ用にlibcをコンパイルしておくことと、それに伴って指定するrpathやinterpreterのパスが変わることである
 
 
 [^10]: [NixOS/patchelf: A small utility to modify the dynamic linker and RPATH of ELF executables](https://github.com/NixOS/patchelf)
