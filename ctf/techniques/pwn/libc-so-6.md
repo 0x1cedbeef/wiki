@@ -2,6 +2,6 @@
 <!-- SUBTITLE: A quick summary of Libc So 6 -->
 
 # Header
-[build-glibc](/ctf/techniques/pwn/libc-so-6/build-glibc)
+[compile-glibc](/ctf/techniques/pwn/libc-so-6/compile-glibc)
 
 [patchelf](/ctf/techniques/pwn/libc-so-6/patchelf)
