@@ -23,7 +23,8 @@ $ make -j8 && make install
 ```
 
 自分の環境ではmakeするのに5分ほどかかった
-ビルドされたlibcを用いてリンクするには、例えば以下のようにする
+ビルドされたlibcを用いてリンクするには、例えば以下のようにする [^10]
+
 
 ```console 
 $ cat hello.c
@@ -34,8 +35,8 @@ int main(void) {
   return 0;
 }
 $ gcc hello.c -o hello \
-> -Wl,--rpath=$HOME/libc64/2.27/lib/libc.so.6 \
-> -Wl,--dynamic-linker=$HOME/libc64/2.27/lib/ld-2.27.so
+  -Wl,--rpath=$HOME/libc64/2.27/lib/libc.so.6 \
+  -Wl,--dynamic-linker=$HOME/libc64/2.27/lib/ld-2.27.so
 $ ldd ./hello
 	linux-vdso.so.1 =>  (0x00007ffef2912000)
 	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f4fafcde000)
@@ -47,7 +48,7 @@ Hello, World!
 ## x86 (i686)
 
 [リンク先の回答](https://stackoverflow.com/a/8074427/8501077)を参考にビルドする
-なお、*i686*部分を*i386*に変えて`configure`しても、**deprecated**だと言われてしまう
+なお、*i686*部分を*i386*に変えて`configure`しても、**deprecated**だと言われてしまうので、このままビルドする
 
 ```console 
 $ mkdir -p $HOME/libc32/2.27
@@ -59,4 +60,13 @@ $ ../glibc-2.27/configure --prefix=$HOME/libc32/2.27 \
      CXXFLAGS="-O2 -march=i686"
 $ make -j8 && make install 
 ```
+
+
+# 参考リンク
+[^10]: [linux - Multiple glibc libraries on a single host - Stack Overflow](https://stackoverflow.com/a/851229/8501077)
+
+[linux - How to compile glibc 32bit on an x86_64 machine - Stack Overflow](https://stackoverflow.com/questions/8004241/how-to-compile-glibc-32bit-on-an-x86-64-machine)
+
+[Using the GNU Compiler Collection (GCC): x86 Options](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html)
+
 
