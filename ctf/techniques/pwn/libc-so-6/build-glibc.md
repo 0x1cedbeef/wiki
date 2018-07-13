@@ -67,7 +67,7 @@ $ make -j8 && make install
 [Using the GNU Compiler Collection (GCC): x86 Options](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html)
 
 
-<!-- annotatoins -->
+<!-- annotations-->
 
 [^10]: [linux - Multiple glibc libraries on a single host - Stack Overflow](https://stackoverflow.com/a/851229/8501077)
 
