@@ -56,23 +56,36 @@ $ patchelf --print-interpreter ./hello64
 
 ## rpathと動的リンカの指定
 
-`--set-rpath`
+`--set-rpath`で動的ライブラリのサーチパスを設定可能
 
 ```console
 $ patchelf --set-rpath $HOME/libc64/2.27/lib ./hello64
-$ patchelf --set-interpreter $HOME/libc64/2.27/lib/ld-2.27.so ./hello64
 $ patchelf --print-rpath ./hello64
 /home/vagrant/libc64/2.27/lib
+```
+
+`--print-rpath`で新たに設定されたrpathを確認できる
+
+同時に、`--set-interpreter`で動的リンカのパスを設定する
+
+```console
+$ patchelf --set-interpreter $HOME/libc64/2.27/lib/ld-2.27.so ./hello64
 $ patchelf --print-interpreter ./hello64
 /home/vagrant/libc64/2.27/lib/ld-2.27.so
-$ ./hello64
-Hello, World!
+```
+
+`ldd`コマンドで共有オブジェクトの依存関係を調べると && ELFバイナリを実行すると、
+
+```console 
 $ ldd ./hello64
 	linux-vdso.so.1 =>  (0x00007ffcc9ee5000)
 	libc.so.6 => /home/vagrant/libc64/2.27/lib/libc.so.6 (0x00007fe4ad2c6000)
 	/home/vagrant/libc64/2.27/lib/ld-2.27.so => /lib64/ld-linux-x86-64.so.2 (0x00007fe4ad67b000)
-
+$ ./hello64
+Hello, World!
 ```
+
+動的ライブラリと動的リンカが任意のものに変更され、かつ期待通りの実行結果を返すことが確認できた
 
 
 [^10]: [NixOS/patchelf: A small utility to modify the dynamic linker and RPATH of ELF executables](https://github.com/NixOS/patchelf)
