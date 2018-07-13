@@ -5,11 +5,11 @@
 
 [\[Linux\] Multiple glibc libraries on a single host gcc | CODE Q&A \[English\]](https://code.i-harness.com/en/q/ced4b)
 
-*patchelf* [^10] はすでにビルドされたELF形式実行ファイルの動的リンカを、任意のパスのものに変更することができる
-[このページ](/ctf/techniques/pwn/libc-so-6/build-glibc)でコンパイルした
+*patchelf* [^10] はすでにビルドされたELF形式実行ファイルの**動的ライブラリのサーチパス (rpath) **と**動的リンカ**を、任意のパスのものに変更することができる
+バイナリビルド後に、[このページ](/ctf/techniques/pwn/libc-so-6/compile-glibc)でコンパイルした動的ライブラリおよび動的リンカを使うように変更してみる
 
 
-x86_64の場合
+# x86_64の場合
 
 ```console
 $ cat hello.c 
@@ -26,12 +26,23 @@ $ ldd ./hello64
 	linux-vdso.so.1 =>  (0x00007ffef49dc000)
 	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fce9b2d1000)
 	/lib64/ld-linux-x86-64.so.2 (0x00007fce9b69b000)
+```
+
+このように、システムのデフォルトの動的ライブラリと動的リンカが使われていることがわかる
+これは`patchelf --print-rpath <filename>`と`patchelf --print-interpreter <filename>`で知ることもできる
+
+```console
 $ patchelf --print-rpath ./hello64
 
 $ patchelf --print-interpreter ./hello64
 /lib64/ld-linux-x86-64.so.2
-$ patchelf --set-rpath $HOME/libc64/2.27/lib ./b ./hello64
-stat: No such file or directory
+```
+
+
+
+
+
+```console
 $ patchelf --set-rpath $HOME/libc64/2.27/lib ./hello64
 $ patchelf --set-interpreter $HOME/libc64/2.27/lib/ld-2.27.so ./hello64
 $ patchelf --print-rpath ./hello64
