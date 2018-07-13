@@ -62,12 +62,10 @@ $ make -j8 && make install
 ```
 
 # 参考リンクなど
-[linux - How to compile glibc 32bit on an x86_64 machine - Stack Overflow](https://stackoverflow.com/questions/8004241/how-to-compile-glibc-32bit-on-an-x86-64-machine)
-
 [Using the GNU Compiler Collection (GCC): x86 Options](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html)
 
 
-<!-- annotations-->
+<!-- annotations -->
 
 [^10]: [linux - Multiple glibc libraries on a single host - Stack Overflow](https://stackoverflow.com/a/851229/8501077)
 
