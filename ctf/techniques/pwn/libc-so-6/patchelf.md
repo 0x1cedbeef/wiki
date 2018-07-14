@@ -1,5 +1,5 @@
-<!-- TITLE: libc.so.6 -->
-<!-- SUBTITLE: A quick summary of Libc So 6 -->
+<!-- TITLE: patchelf -->
+<!-- SUBTITLE: A quick summary of patchelf -->
 
 # `patchelf`によるglibcの変更
 
