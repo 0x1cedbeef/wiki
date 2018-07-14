@@ -3,7 +3,7 @@
 
 # Welcome
 
-ここは**0x1cedbeef**の個人用WIKIです
+ここは個人用WIKIです
 
 [Wiki.js](https://wiki.js.org/)を使用しています
 
