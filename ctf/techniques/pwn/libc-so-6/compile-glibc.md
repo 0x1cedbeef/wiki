@@ -35,7 +35,7 @@ int main(void) {
   return 0;
 }
 $ gcc hello.c -o hello \
-  -Wl,--rpath=$HOME/libc64/2.27/lib/libc.so.6 \
+  -Wl,--rpath=$HOME/libc64/2.27/lib \
   -Wl,--dynamic-linker=$HOME/libc64/2.27/lib/ld-2.27.so
 $ ldd ./hello
 	linux-vdso.so.1 =>  (0x00007ffef2912000)
